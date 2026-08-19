@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Esteban Tenreiro – Ingeniería estructural en Caracas</title>
+<meta name="description" content="Despacho de ingeniería estructural en Caracas: proyecto y cálculo, memoria de cálculo, planos y despiece, supervisión e inspección de obra y gerencia de proyectos. Norma COVENIN 1756." />
+<meta name="theme-color" content="#0F3D63" />
+<link rel="canonical" href="https://www.tenreiro.com/" />
+
+<!-- Open Graph / redes -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_VE" />
+<meta property="og:site_name" content="Esteban Tenreiro – Profesionales y Asociados" />
+<meta property="og:title" content="Esteban Tenreiro – Ingeniería estructural en Caracas" />
+<meta property="og:description" content="Proyecto, cálculo, supervisión e inspección de estructuras. Más de 2.000.000 m² proyectados junto a los principales arquitectos del país." />
+<meta property="og:url" content="https://www.tenreiro.com/" />
+<meta property="og:image" content="https://www.tenreiro.com/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Favicon en línea: no requiere archivo aparte -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F3D63'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23fff' text-anchor='middle'%3EET%3C/text%3E%3Crect x='18' y='48' width='28' height='3' fill='%2329ABE2'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+:root{
+  --navy:#0F3D63;
+  --navy-deep:#092338;
+  --navy-mid:#14538a;
+  --accent:#29ABE2;
+  --bg:#EAF4FA;
+  --soft:#F2F8FC;
+  --field:#F7FBFD;
+  --ink:#2E3A43;
+  --body:#4d6579;
+  --muted:#6b8298;
+  /* neutros cálidos: rompen el monocromo azul */
+  --stone:#6E6A62;
+  --sand:#D8CFC2;
+  --sand-soft:#EFE9E1;
+  --line:rgba(15,61,99,.12);
+
+  --r-xl:32px;
+  --r-lg:24px;
+  --r-md:18px;
+  --sh-soft:0 18px 44px rgba(15,61,99,.07);
+  --sh-card:0 12px 30px rgba(15,61,99,.07);
+  --sh-deep:0 30px 70px rgba(9,32,52,.24);
+  --ease:cubic-bezier(.2,.7,.2,1);
+
+  --display:Archivo,"Poppins",system-ui,sans-serif;
+  --text:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.is-locked{overflow:hidden}
+
+a{color:var(--navy);text-decoration:none;transition:color .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
+img{max-width:100%;display:block}
+button,input,textarea{font-family:inherit}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+h1,h2,h3{margin:0;font-family:var(--display);color:var(--navy);font-weight:600;letter-spacing:-.035em;line-height:1.04}
+p{margin:0}
+
+.wrap{max-width:1240px;margin:0 auto;padding-left:28px;padding-right:28px}
+
+/* eyebrow con marca de plano: A—1, A—2… */
+.eyebrow{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.eyebrow::before{content:attr(data-ref);font-family:var(--display);font-size:11px;letter-spacing:.1em;color:var(--stone);border:1px solid var(--sand);border-radius:4px;padding:3px 7px;background:rgba(255,255,255,.6)}
+.eyebrow--light{color:var(--accent)}
+.eyebrow--light::before{color:rgba(255,255,255,.62);border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+
+/* retícula de plano de fondo (reemplaza los degradados difusos) */
+.blueprint{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(15,61,99,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(15,61,99,.05) 1px,transparent 1px),
+    linear-gradient(rgba(15,61,99,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(15,61,99,.028) 1px,transparent 1px);
+  background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 22%,#000 25%,transparent 76%);
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 22%,#000 25%,transparent 76%);
+}
+.page{position:relative;z-index:1}
+section{position:relative}
+
+/* ============================================================
+   2. BOTONES
+   ============================================================ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:16px 30px;border-radius:999px;font-size:14.5px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:all .28s var(--ease)}
+.btn--primary{background:var(--navy);color:#fff;box-shadow:0 10px 26px rgba(15,61,99,.22)}
+.btn--primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 14px 30px rgba(41,171,226,.3)}
+.btn--ghost{border-color:rgba(15,61,99,.22);color:var(--navy)}
+.btn--ghost:hover{background:#fff;transform:translateY(-2px)}
+.btn--accent{background:var(--accent);color:#fff;box-shadow:0 10px 26px rgba(41,171,226,.28)}
+.btn--accent:hover{background:#fff;color:var(--navy);transform:translateY(-2px)}
+.btn--sm{padding:13px 24px;font-size:13.5px}
+.btn[disabled]{opacity:.6;cursor:default;transform:none}
+
+/* ============================================================
+   3. SLOTS DE IMAGEN
+   ============================================================ */
+.slot{position:relative;margin:0;overflow:hidden;border-radius:var(--r-md);background:linear-gradient(135deg,#dce9f3,#eef6fb);isolation:isolate}
+.slot::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center;font-size:12px;font-weight:500;letter-spacing:.03em;color:#7c93a8;border:1px dashed rgba(15,61,99,.18);border-radius:inherit;z-index:0}
+.slot img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.slot img[hidden]{display:none}
+/* sin foto todavía: panel de retícula, no un hueco de imagen rota */
+.slot.is-empty{background-color:#e9f2f9;background-image:linear-gradient(rgba(15,61,99,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(15,61,99,.08) 1px,transparent 1px);background-size:26px 26px}
+.slot.is-empty::after{border-style:solid;border-color:rgba(15,61,99,.1);font-family:var(--display);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#93a8ba}
+
+/* ============================================================
+   4. BARRA SUPERIOR, HEADER, PROGRESO
+   ============================================================ */
+.topbar{background:var(--navy);color:rgba(255,255,255,.8);font-size:12.5px;letter-spacing:.04em}
+.topbar .wrap{display:flex;gap:26px;align-items:center;flex-wrap:wrap;padding:10px 28px}
+.topbar a{color:rgba(255,255,255,.82);display:flex;align-items:center;gap:8px}
+.topbar a:hover{color:#fff}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+.site-header{position:sticky;top:0;z-index:70;padding:16px 0;transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);backdrop-filter:blur(10px)}
+.site-header.is-scrolled{padding:9px 0;background:rgba(234,244,250,.9);box-shadow:0 6px 26px rgba(15,61,99,.08)}
+.site-header .wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:transparent}
+.progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--navy-mid));transition:width .1s linear}
+
+.brand{display:flex;align-items:center;flex-shrink:0}
+.brand img{height:50px;transition:height .3s var(--ease)}
+.site-header.is-scrolled .brand img{height:40px}
+.brand__text{display:none;font-family:var(--display);font-weight:600;color:var(--navy);line-height:1.15;letter-spacing:-.03em}
+.brand__text span{display:block;font-family:var(--text);font-size:11px;font-weight:400;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+[data-brand].is-textonly img{display:none}
+[data-brand].is-textonly .brand__text{display:block;font-size:19px}
+.footer__logo.is-textonly{padding:0}
+
+.nav{margin-left:auto;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.74);border:1px solid rgba(15,61,99,.08);padding:6px;border-radius:999px;box-shadow:0 6px 22px rgba(15,61,99,.06);flex-wrap:wrap;font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:500}
+.nav a{padding:12px 19px;border-radius:999px;color:#43607a;display:flex;align-items:center;gap:7px}
+.nav a:hover{background:rgba(15,61,99,.07);color:var(--navy)}
+.nav a.is-active{background:var(--navy);color:#fff}
+.nav a.is-active:hover{background:var(--accent)}
+.nav .ext{font-size:11px;opacity:.6}
+.nav__title{display:none;font-size:11px;letter-spacing:.16em;color:var(--stone);font-weight:500;padding:0 18px 10px}
+
+.nav-toggle{margin-left:auto;display:none;width:46px;height:46px;padding:0;border-radius:14px;border:1px solid rgba(15,61,99,.12);background:rgba(255,255,255,.85);cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
+.nav-toggle:hover{background:#fff;border-color:rgba(15,61,99,.28)}
+.nav-toggle__bars{position:relative;display:block;width:20px;height:14px}
+.nav-toggle__bars span{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:var(--navy);transition:transform .32s var(--ease),opacity .2s var(--ease)}
+.nav-toggle__bars span:nth-child(1){top:0}
+.nav-toggle__bars span:nth-child(2){top:6px}
+.nav-toggle__bars span:nth-child(3){top:12px}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.nav-scrim{position:fixed;inset:0;z-index:80;background:rgba(9,32,52,.55);backdrop-filter:blur(3px);opacity:0;transition:opacity .3s var(--ease)}
+.nav-scrim[hidden]{display:none}
+.nav-scrim.is-open{opacity:1}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{max-width:1240px;margin:0 auto;padding:52px 28px 46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:center;scroll-margin-top:110px}
+.hero h1{font-size:clamp(42px,5.4vw,74px);font-weight:700;letter-spacing:-.045em}
+.hero h1 em{font-style:normal;display:block;font-weight:500;color:var(--navy-mid)}
+.hero__sub{margin-top:16px;font-size:clamp(18px,1.9vw,23px);font-weight:300;color:var(--accent);letter-spacing:-.01em}
+.hero__lead{margin-top:26px;max-width:47ch;font-size:16px;line-height:1.8;color:var(--body);font-weight:300}
+.hero__actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+
+.stats{margin-top:42px;display:flex;gap:32px;flex-wrap:wrap;align-items:stretch}
+.stats__rule{width:1px;background:var(--sand)}
+.stat__num{font-family:var(--display);font-size:30px;font-weight:600;color:var(--navy);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat__label{margin-top:2px;font-size:12.5px;color:var(--stone);font-weight:300}
+
+.hero__media{position:relative}
+.hero__media .slot{height:490px;border-radius:28px;box-shadow:0 30px 70px rgba(15,61,99,.2)}
+/* cotas: la firma visual — hairline + tope, como una acotación de plano */
+.cota{position:absolute;z-index:3;display:flex;align-items:center;gap:0;font-size:12px;font-weight:500;letter-spacing:.02em;white-space:nowrap}
+.cota__tick{width:1px;height:16px;background:currentColor;opacity:.65}
+.cota__line{height:1px;width:34px;background:currentColor;opacity:.65}
+.cota__label{padding:8px 14px;border-radius:999px;background:#fff;color:var(--navy);box-shadow:0 8px 22px rgba(15,61,99,.16)}
+.cota--a{top:34px;left:-40px;color:var(--navy)}
+.cota--b{top:132px;right:-40px;color:var(--navy);flex-direction:row-reverse}
+.cota--b .cota__label{background:var(--navy);color:#fff}
+.cota--c{bottom:44px;right:-40px;color:var(--accent);flex-direction:row-reverse}
+.cota--c .cota__label{background:var(--accent);color:#fff;box-shadow:0 8px 22px rgba(41,171,226,.32)}
+
+/* ============================================================
+   6. QUIÉN ES
+   ============================================================ */
+.about{padding:44px 0 12px}
+.about__card{background:#fff;border-radius:var(--r-xl);padding:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:46px;align-items:center;box-shadow:var(--sh-soft)}
+.about__portrait{position:relative}
+.about__portrait .slot{max-width:420px;aspect-ratio:4/5;border-radius:var(--r-lg);box-shadow:0 24px 56px rgba(15,61,99,.2)}
+.about__portrait .slot img{object-position:50% 20%}
+.about__badge{position:absolute;bottom:22px;left:-14px;background:var(--navy);color:#fff;padding:11px 20px;border-radius:999px;font-size:13px;font-weight:500;box-shadow:0 10px 24px rgba(9,32,52,.28);z-index:2}
+.about h2{margin-top:16px;font-size:clamp(27px,2.8vw,38px);line-height:1.1}
+.about p{margin-top:20px;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300;max-width:52ch}
+.chips{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--sand-soft);border:1px solid var(--sand);color:#4a4a44;padding:9px 16px;border-radius:999px;font-size:13px}
+
+/* ============================================================
+   7. SERVICIOS — banda oscura a sangre
+   ============================================================ */
+.band{background:linear-gradient(118deg,var(--navy-deep) 0%,var(--navy) 60%,var(--navy-mid) 100%);color:#fff;padding:78px 0 84px;margin-top:52px;position:relative;overflow:hidden;scroll-margin-top:110px}
+.band::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:96px 96px;pointer-events:none}
+.band .wrap{position:relative;z-index:1}
+.band h2{color:#fff;font-size:clamp(30px,3.2vw,44px);margin-top:16px}
+.band p{margin-top:20px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.78);font-weight:300;max-width:54ch}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:52px}
+.architects{list-style:none;display:grid;gap:2px;padding:0;margin:20px 0 0}
+.architects li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15.5px;color:#fff;font-weight:300}
+
+.accordion{padding:44px 0 8px;display:grid;gap:12px}
+.acc{background:rgba(255,255,255,.78);border:1px solid rgba(15,61,99,.08);border-radius:var(--r-lg);padding:8px;box-shadow:var(--sh-card);transition:box-shadow .3s var(--ease)}
+.acc.is-open{box-shadow:0 18px 44px rgba(15,61,99,.12)}
+.acc__head{display:flex;align-items:center;gap:18px;padding:18px 22px;cursor:pointer;border-radius:var(--r-md);width:100%;background:none;border:none;text-align:left;transition:background .25s var(--ease)}
+.acc__head:hover{background:rgba(15,61,99,.04)}
+.acc__num{font-family:var(--display);width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:600;flex-shrink:0}
+.acc__title{font-family:var(--display);font-size:19px;font-weight:500;color:var(--navy);letter-spacing:-.02em}
+.acc__sign{margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid rgba(15,61,99,.18);color:var(--navy);display:grid;place-items:center;font-size:17px;line-height:1;flex-shrink:0;transition:transform .35s var(--ease),background .25s var(--ease),color .25s var(--ease)}
+.acc.is-open .acc__sign{transform:rotate(135deg);background:var(--accent);color:#fff;border-color:var(--accent)}
+.acc__body{overflow:hidden;height:0;transition:height .45s var(--ease)}
+.acc__inner{padding:6px 14px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.acc__inner .slot{height:auto;min-height:200px;align-self:stretch;border-radius:var(--r-md)}
+/* la imagen se sale del flujo: la altura de la fila la fija el texto */
+.acc__inner .slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.acc__text{background:var(--navy);border-radius:var(--r-md);padding:30px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.acc__text p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.86);font-weight:300}
+.acc__text .btn{align-self:flex-start;margin-top:8px}
+
+/* ============================================================
+   8. CÓMO TRABAJAMOS
+   ============================================================ */
+.process{padding:64px 0 24px;scroll-margin-top:110px}
+.process__grid{margin-top:38px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;position:relative}
+.step{position:relative;padding-top:26px}
+.step::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--sand)}
+.step::after{content:"";position:absolute;top:-3px;left:0;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.step__num{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--stone)}
+.step h3{margin-top:10px;font-size:20px;font-weight:600;letter-spacing:-.025em}
+.step p{margin-top:10px;font-size:14.5px;line-height:1.75;color:var(--body);font-weight:300}
+.step ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.step li{position:relative;padding-left:16px;font-size:13.5px;color:var(--stone);font-weight:300;line-height:1.5}
+.step li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:1px;background:var(--accent)}
+
+/* ============================================================
+   9. PROYECTOS
+   ============================================================ */
+.projects{padding:56px 0 70px;scroll-margin-top:110px}
+.section-head{display:flex;gap:26px;align-items:flex-end;flex-wrap:wrap}
+.section-head h2{font-size:clamp(30px,3.2vw,44px);margin-top:16px}
+.filters{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;background:rgba(255,255,255,.7);border:1px solid rgba(15,61,99,.08);padding:6px;border-radius:999px}
+.filters button{border:none;cursor:pointer;padding:11px 20px;border-radius:999px;font-size:13px;font-weight:500;background:transparent;color:#43607a;transition:all .25s var(--ease)}
+.filters button:hover{background:rgba(15,61,99,.07);color:var(--navy)}
+.filters button.is-active{background:var(--navy);color:#fff}
+
+.grid{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:#fff;border-radius:var(--r-lg);padding:12px;box-shadow:var(--sh-card);cursor:pointer;transition:transform .35s var(--ease),box-shadow .35s var(--ease);animation:card-in .45s var(--ease) both}
+.card:hover,.card:focus-visible{transform:translateY(-6px);box-shadow:0 22px 48px rgba(15,61,99,.16)}
+.card:hover .slot img{transform:scale(1.05)}
+.card__media{position:relative;aspect-ratio:4/3;border-radius:16px}
+.card__cat{position:absolute;top:12px;left:12px;background:rgba(9,32,52,.78);color:#fff;padding:7px 14px;border-radius:999px;font-size:11.5px;font-weight:500;pointer-events:none;z-index:2}
+.card__body{padding:18px 12px 14px}
+.card__name{font-family:var(--display);font-size:18.5px;font-weight:600;color:var(--navy);letter-spacing:-.025em}
+.card__meta{margin-top:8px;font-size:13.5px;color:var(--stone);font-weight:300}
+.card__link{margin-top:14px;font-size:12.5px;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:6px}
+.card__link span{transition:transform .3s var(--ease)}
+.card:hover .card__link span{transform:translateX(5px)}
+@keyframes card-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.modal[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:rgba(9,32,52,.72);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s var(--ease)}
+.modal.is-open{opacity:1;visibility:visible}
+.modal__card{background:#fff;border-radius:28px;max-width:720px;width:100%;max-height:86vh;overflow:auto;padding:44px 46px 46px;position:relative;transform:translateY(20px) scale(.98);transition:transform .35s var(--ease)}
+.modal.is-open .modal__card{transform:none}
+.modal__close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(15,61,99,.14);background:#fff;font-size:20px;line-height:1;color:var(--navy);cursor:pointer;transition:all .25s var(--ease)}
+.modal__close:hover{background:var(--navy);color:#fff;transform:rotate(90deg)}
+.modal h3{margin-top:12px;font-size:31px}
+.modal__rows{margin-top:26px;display:grid;gap:9px}
+.row{background:var(--soft);border-radius:14px;padding:14px 20px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:baseline}
+.row dt{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);font-weight:500}
+.row dd{margin:0;font-size:15px;color:var(--navy);font-weight:400}
+.modal__cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* ============================================================
+   10. NORTE
+   ============================================================ */
+.norte{padding:0 0 66px}
+.norte__card{background:linear-gradient(115deg,var(--navy-deep) 0%,var(--navy) 70%,#175c99 100%);border-radius:var(--r-xl);padding:52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:44px;align-items:center;box-shadow:var(--sh-deep)}
+.norte__card h2{margin-top:16px;color:#fff;font-size:clamp(26px,3vw,38px);line-height:1.12;text-wrap:balance}
+.norte__card p{margin-top:18px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.78);font-weight:300;max-width:50ch}
+.norte__card .btn{margin-top:28px}
+.norte__card .slot{height:300px;border-radius:22px}
+
+/* ============================================================
+   11. ESTUDIANTES
+   ============================================================ */
+.students{padding:0 0 70px;scroll-margin-top:110px}
+.students__card{background:#fff;border-radius:var(--r-xl);padding:44px;box-shadow:var(--sh-soft)}
+.students__head{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:end}
+.students__head h2{margin-top:16px;font-size:clamp(27px,2.8vw,38px)}
+.students__head p{margin-top:14px;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300;max-width:48ch}
+.students__head .filters{margin-left:auto;background:transparent;border:none;padding:0;justify-content:flex-end}
+.students__head .filters button{border:1px solid var(--line)}
+
+.table{margin-top:28px}
+.table__head,.table__row{display:grid;grid-template-columns:minmax(220px,3fr) minmax(120px,1fr) 215px}
+.table__head{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);font-weight:500;border-bottom:1px solid var(--line);padding-bottom:14px}
+.table__head div:last-child{text-align:right}
+.table__row{align-items:center;padding:16px 0;border-bottom:1px solid rgba(15,61,99,.07);transition:background .25s var(--ease),padding-left .25s var(--ease);border-radius:10px}
+.table__row:hover{background:var(--sand-soft);padding-left:12px}
+.dl__title{font-size:15.5px;color:var(--navy);font-weight:500;line-height:1.45;padding-right:20px}
+.dl__meta{margin-top:5px;font-size:12.5px;color:var(--stone);font-weight:300}
+.dl__file{display:flex;align-items:center;gap:9px;padding-right:16px}
+.dl__tag{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:.08em;padding:4px 8px;border-radius:6px;background:var(--sand-soft);border:1px solid var(--sand);color:#4a4a44;flex-shrink:0}
+.dl__tag--zip{background:rgba(41,171,226,.12);border-color:rgba(41,171,226,.32);color:var(--navy-mid)}
+.dl__size{font-size:13px;color:var(--stone);font-weight:300;font-variant-numeric:tabular-nums}
+.dl__action{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.dl__view{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(15,61,99,.14);color:var(--navy);padding:10px 16px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.08em}
+.dl__view:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.table__group{margin:30px 0 6px;display:flex;align-items:center;gap:14px;font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--stone)}
+.table__group::after{content:"";flex:1;height:1px;background:var(--line)}
+.table__group:first-child{margin-top:16px}
+.dl__btn{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:1px solid rgba(15,61,99,.1);color:var(--navy);padding:10px 18px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.08em}
+.dl__btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.dl__btn span{transition:transform .25s var(--ease)}
+.table__row:hover .dl__btn span{transform:translateY(2px)}
+.table__empty{padding:28px 0;font-size:14.5px;color:var(--body);font-weight:300}
+.students__note{margin-top:20px;font-size:12.5px;color:var(--stone);font-weight:300}
+
+/* ============================================================
+   12. CONTACTO
+   ============================================================ */
+.contact{padding:0 0 80px;scroll-margin-top:110px}
+.contact__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.contact__info{background:linear-gradient(150deg,var(--navy-deep),var(--navy));border-radius:var(--r-xl);padding:46px;color:#fff}
+.contact__info h2{color:#fff;margin-top:16px;font-size:clamp(28px,3vw,40px)}
+.contact__list{margin-top:34px;display:grid;gap:22px}
+.contact__label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.48)}
+.contact__value{font-size:18px;color:#fff;font-weight:500;display:inline-block;margin-top:3px}
+a.contact__value:hover{color:var(--accent)}
+.contact__address{font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.8);font-weight:300;max-width:32ch;margin-top:4px}
+
+.form{background:#fff;border-radius:var(--r-xl);padding:46px;display:grid;gap:18px;box-shadow:var(--sh-soft)}
+.field{display:grid;gap:8px}
+.field label{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);font-weight:500}
+.field input,.field textarea,.field select{border:1px solid rgba(15,61,99,.14);border-radius:13px;padding:14px 16px;font-size:15.5px;color:var(--navy);outline:none;background:var(--field);transition:border-color .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease)}
+.field textarea{resize:vertical;min-height:120px}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);background:#fff;box-shadow:0 6px 18px rgba(41,171,226,.14)}
+.field.has-error input,.field.has-error textarea{border-color:#c0392b;background:#fdf5f4}
+.robot{display:flex;align-items:center;gap:14px;background:var(--field);border:1px solid rgba(15,61,99,.14);border-radius:13px;padding:16px 18px;cursor:pointer;width:100%;text-align:left;transition:border-color .25s var(--ease)}
+.robot:hover{border-color:rgba(15,61,99,.3)}
+.robot__box{width:22px;height:22px;border-radius:5px;border:2px solid rgba(15,61,99,.25);background:#fff;color:#fff;display:grid;place-items:center;font-size:13px;line-height:1;flex-shrink:0;transition:all .25s var(--ease)}
+.robot.is-checked .robot__box{background:var(--accent);border-color:var(--accent)}
+.robot__label{font-size:14.5px;color:var(--navy)}
+.robot__note{margin-left:auto;font-size:10px;color:var(--stone);text-align:right;line-height:1.4}
+.form__note{font-size:12.5px;color:var(--stone);font-weight:300}
+.form__note.is-error{color:#c0392b}
+.form__note.is-ok{color:#1a7f4b}
+
+/* ============================================================
+   13. FOOTER Y FLOTANTES
+   ============================================================ */
+.site-footer{background:var(--navy-deep);color:rgba(255,255,255,.62);border-radius:36px 36px 0 0}
+.site-footer .wrap{padding:60px 28px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:42px}
+.footer__logo{background:transparent;padding:0;display:inline-flex;align-items:center}
+.footer__logo img{height:58px}
+.footer__logo .brand__text{color:#fff}
+.footer__logo .brand__text span{color:var(--accent)}
+.site-footer p{margin-top:22px;font-size:14px;line-height:1.8;font-weight:300;max-width:32ch}
+.footer__title{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.42);font-weight:500}
+.footer__links{margin-top:16px;display:grid;gap:10px;font-size:14.5px}
+.footer__links a{color:rgba(255,255,255,.72)}
+.footer__links a:hover{color:var(--accent)}
+.footer__bar{border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:rgba(255,255,255,.35);display:flex;gap:20px;flex-wrap:wrap;padding:22px 28px 40px}
+.footer__bar span:last-child{margin-left:auto}
+
+.floats{position:fixed;right:22px;bottom:22px;z-index:90;display:grid;gap:10px;justify-items:center}
+.fab{width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 26px rgba(9,32,52,.28);transition:all .3s var(--ease)}
+.fab--top{background:var(--navy);color:#fff;font-size:18px;opacity:0;transform:translateY(14px);pointer-events:none}
+.fab--top.is-visible{opacity:1;transform:none;pointer-events:auto}
+.fab--top:hover{background:var(--accent)}
+.fab--wa{background:#25D366;color:#fff}
+.fab--wa:hover{transform:translateY(-3px)}
+.fab--wa svg{width:25px;height:25px;fill:currentColor}
+.fab--wa[hidden]{display:none}
+
+/* ============================================================
+   14. ANIMACIONES
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal--img{transform:scale(.965)}
+.reveal--left{transform:translateX(-26px)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* secuencia de carga del hero */
+.seq > *{opacity:0;animation:seq-in .8s var(--ease) forwards}
+.seq > *:nth-child(1){animation-delay:.05s}
+.seq > *:nth-child(2){animation-delay:.15s}
+.seq > *:nth-child(3){animation-delay:.25s}
+.seq > *:nth-child(4){animation-delay:.36s}
+.seq > *:nth-child(5){animation-delay:.48s}
+@keyframes seq-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hero__media{opacity:0;animation:media-in 1s var(--ease) .2s forwards}
+@keyframes media-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.cota{opacity:0;animation:seq-in .7s var(--ease) forwards}
+.cota--a{animation-delay:.75s}
+.cota--b{animation-delay:.88s}
+.cota--c{animation-delay:1s}
+
+/* ============================================================
+   14-B. ANIMACIONES EXTRA
+   ============================================================ */
+.reveal{transition-delay:var(--d,0s)}
+
+/* la retícula de fondo respira */
+@keyframes grid-drift{to{background-position:96px 96px,96px 96px,24px 24px,24px 24px}}
+.blueprint{animation:grid-drift 45s linear infinite}
+
+/* subrayado animado del menú */
+.nav a{position:relative}
+.nav a::after{content:"";position:absolute;left:19px;right:19px;bottom:8px;height:1.5px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.nav a.is-active::after{opacity:0}
+
+/* brillo que cruza los botones */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::before{content:"";position:absolute;z-index:-1;top:0;left:-140%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-18deg);transition:left .65s var(--ease)}
+.btn:hover::before{left:150%}
+
+/* zoom suave en toda imagen dentro de un slot */
+.slot:hover img{transform:scale(1.06)}
+
+/* cotas del hero: flotación continua */
+@keyframes cota-float{50%{transform:translateY(-7px)}}
+.cota__label{animation:cota-float 5.5s ease-in-out infinite}
+.cota--b .cota__label{animation-delay:.8s}
+.cota--c .cota__label{animation-delay:1.6s}
+
+/* acordeón */
+.acc{transition:box-shadow .3s var(--ease),transform .3s var(--ease),opacity .7s var(--ease)}
+.acc:hover{transform:translateY(-3px)}
+.acc__num{transition:background .3s var(--ease),transform .35s var(--ease)}
+.acc.is-open .acc__num{background:var(--accent)}
+.acc__head:hover .acc__num{transform:rotate(-8deg) scale(1.07)}
+.acc__inner > *{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease) .12s,transform .5s var(--ease) .12s}
+.acc.is-open .acc__inner > *{opacity:1;transform:none}
+.acc.is-open .acc__inner > *:nth-child(2){transition-delay:.22s}
+
+/* chips */
+.chip{transition:transform .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease)}
+.chip:hover{transform:translateY(-3px);background:#fff;border-color:var(--accent)}
+
+/* lista de arquitectos */
+.architects li{transition:padding-left .3s var(--ease),border-color .3s var(--ease),opacity .7s var(--ease) var(--d,0s),transform .7s var(--ease) var(--d,0s)}
+.architects li:hover{padding-left:12px;border-color:var(--accent)}
+.architects .dot{transition:box-shadow .3s var(--ease),transform .3s var(--ease)}
+.architects li:hover .dot{transform:scale(1.3);box-shadow:0 0 0 5px rgba(41,171,226,.22)}
+
+/* pasos del proceso */
+.step::after{transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.step:hover::after{transform:scale(1.7);box-shadow:0 0 0 6px rgba(41,171,226,.16)}
+.step h3{transition:color .25s var(--ease)}
+.step:hover h3{color:var(--navy-mid)}
+
+/* tarjetas de proyecto */
+.card__media::before{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,transparent 45%,rgba(9,32,52,.4));opacity:0;transition:opacity .35s var(--ease)}
+.card:hover .card__media::before{opacity:1}
+.card__cat{transition:transform .3s var(--ease),background .3s var(--ease)}
+.card:hover .card__cat{transform:translateY(-2px);background:var(--accent)}
+
+/* contacto y footer */
+a.contact__value{position:relative}
+a.contact__value::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+a.contact__value:hover::after{transform:scaleX(1)}
+.footer__links a{display:inline-block;transition:color .25s var(--ease),transform .25s var(--ease)}
+.footer__links a:hover{transform:translateX(6px)}
+.footer__logo img{transition:transform .4s var(--ease)}
+.footer__logo:hover img{transform:scale(1.04)}
+.dl__btn,.dl__view{transition:all .25s var(--ease)}
+.dl__btn:hover,.dl__view:hover{transform:translateY(-2px)}
+
+/* WhatsApp: pulso */
+@keyframes wa-pulse{0%{box-shadow:0 10px 26px rgba(9,32,52,.28),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 10px 26px rgba(9,32,52,.28),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 10px 26px rgba(9,32,52,.28),0 0 0 0 rgba(37,211,102,0)}}
+.fab--wa{animation:wa-pulse 2.8s ease-out infinite}
+
+/* ============================================================
+   15. RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .hero{gap:44px}
+  .norte__card{padding:44px}
+  .about__card{gap:34px}
+  .cota--a{left:-16px}
+  .cota--b,.cota--c{right:-16px}
+}
+
+@media (max-width:900px){
+  .nav-toggle{display:inline-flex}
+  .nav{position:fixed;top:0;right:0;z-index:85;margin:0;height:100vh;height:100dvh;width:min(330px,88vw);padding:96px 20px 28px;border:none;border-radius:0;background:#fff;box-shadow:-18px 0 50px rgba(9,32,52,.25);display:flex;flex-direction:column;align-items:stretch;gap:6px;overflow-y:auto;transform:translateX(100%);visibility:hidden;transition:transform .38s var(--ease),visibility .38s var(--ease)}
+  .nav.is-open{transform:none;visibility:visible}
+  .nav__title{display:block}
+  .nav a{padding:15px 18px;border-radius:15px;font-size:13px;justify-content:space-between}
+
+  .hero{padding-top:34px;gap:36px}
+  .hero__media .slot{height:min(58vw,380px)}
+  .cota{font-size:11.5px}
+  .cota--a{left:6px}
+  .cota--b{right:6px;top:100px}
+  .cota--c{right:6px;bottom:24px}
+  .cota__line{width:20px}
+
+  .about__card,.norte__card,.students__card,.contact__info,.form{padding:32px}
+  .band{padding:60px 0 66px;margin-top:40px}
+  .split{gap:34px}
+  .acc__inner .slot{min-height:190px}
+  .acc__text{padding:26px 24px}
+
+  .section-head{align-items:flex-start;gap:16px}
+  .filters{margin-left:0;max-width:100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:0 0 auto}
+  .students__head .filters{justify-content:flex-start;margin-left:0}
+
+  .modal__card{padding:36px 26px 30px;border-radius:24px}
+  .modal h3{font-size:26px}
+  .row{grid-template-columns:1fr;gap:4px}
+
+  .table__head{display:none}
+  .table__row{grid-template-columns:1fr;gap:6px;padding:18px 0}
+  .table__row:hover{padding-left:0}
+  .dl__title,.dl__file{padding-right:0}
+  .dl__action{justify-content:flex-start;margin-top:10px}
+  .table__group{margin-top:26px}
+}
+
+@media (max-width:640px){
+  .wrap{padding-left:18px;padding-right:18px}
+  .hero{padding:26px 18px 30px}
+  .topbar .wrap{gap:14px;font-size:11.5px;padding-left:18px;padding-right:18px}
+  .site-header{padding:12px 0}
+  .brand img{height:42px}
+  .site-header.is-scrolled .brand img{height:36px}
+
+  .hero__media .slot{height:min(66vw,330px)}
+  .hero__actions .btn{width:100%}
+  .stats{gap:22px}
+  .stats__rule{display:none}
+
+  .about__card,.norte__card,.students__card,.contact__info,.form{padding:24px;border-radius:24px}
+  .about__portrait .slot{max-width:none}
+  .about__badge{position:static;display:inline-block;margin-top:14px;box-shadow:none}
+  .band{padding:52px 0 56px}
+
+  .acc__head{padding:14px;gap:12px}
+  .acc__title{font-size:17px}
+  .acc__num{width:34px;height:34px;border-radius:10px;font-size:12px}
+  .acc__inner{padding:6px 6px 8px}
+  .acc__inner .slot{min-height:170px}
+  .acc__text{padding:22px 20px}
+  .acc__text .btn{width:100%}
+
+  .process__grid{gap:22px}
+  .grid{grid-template-columns:1fr;gap:18px}
+
+  .modal{padding:0;place-items:end center}
+  .modal__card{max-height:92vh;max-height:92dvh;border-radius:24px 24px 0 0;padding:32px 20px 28px}
+  .modal h3{font-size:23px}
+  .modal__close{top:14px;right:14px}
+  .modal__cta .btn{width:100%}
+
+  .norte__card .slot{height:220px}
+  .norte__card .btn{width:100%}
+  .robot__note{display:none}
+
+  .site-footer{border-radius:26px 26px 0 0}
+  .site-footer .wrap{gap:32px;padding-left:18px;padding-right:18px}
+  .footer__bar{padding-left:18px;padding-right:18px}
+  .footer__bar span:last-child{margin-left:0}
+  .floats{right:14px;bottom:14px}
+  .fab{width:44px;height:44px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  .reveal,.seq > *,.hero__media,.cota,.acc__inner > *{opacity:1 !important;transform:none !important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="blueprint" aria-hidden="true"></div>
+
+<div class="page">
+
+  <!-- ===================== BARRA SUPERIOR ===================== -->
+  <div class="topbar">
+    <div class="wrap">
+      <a href="mailto:info@tenreiro.com"><span class="dot"></span>INFO@TENREIRO.COM</a>
+      <a href="tel:+582129930530"><span class="dot"></span>+58(212) 993.05.30</a>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="wrap">
+      <a href="#inicio" class="brand" data-brand>
+        <img src="img/logo.png" alt="Esteban Tenreiro – Profesionales y Asociados" data-optional />
+        <span class="brand__text">Esteban Tenreiro<span>Profesionales asociados</span></span>
+      </a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú">
+        <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
+        <div class="nav__title">MENÚ</div>
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#estudiantes">Estudiantes</a>
+        <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte<span class="ext">↗</span></a>
+      </nav>
+    </div>
+    <div class="progress"><div class="progress__bar" id="progressBar"></div></div>
+  </header>
+
+  <div class="nav-scrim" id="navScrim" hidden></div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="inicio">
+    <div class="seq">
+      <h1>Esteban<em>Tenreiro</em></h1>
+      <div class="hero__sub">Ingeniería estructural &amp; profesionales asociados</div>
+      <p class="hero__lead">
+        Un despacho dedicado por completo a las estructuras, con un profundo énfasis en su diseño
+        arquitectónico. Proyectamos, calculamos y supervisamos la obra junto al arquitecto autor,
+        desde el anteproyecto hasta el último vaciado.
+      </p>
+      <div class="hero__actions">
+        <a href="#contacto" class="btn btn--primary">Solicitar un cálculo estructural</a>
+        <a href="#proyectos" class="btn btn--ghost">Ver proyectos</a>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat__num">+<span id="yearsCount" data-count="22" data-suffix=" años">22 años</span></div>
+          <div class="stat__label">de ejercicio continuo</div>
+        </div>
+        <div class="stats__rule"></div>
+        <div>
+          <div class="stat__num">+<span data-count="2000000" data-from="1850000" data-suffix=" m²">2.000.000 m²</span></div>
+          <div class="stat__label">de edificaciones calculadas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__media" id="heroMedia">
+      <figure class="slot" data-label="Imagen del hero — obra o estructura">
+        <img src="img/hero.jpg" alt="Estructura de concreto armado proyectada por el despacho" data-optional />
+      </figure>
+      <div class="cota cota--a" data-parallax="14">
+        <span class="cota__label">Cálculo estructural</span>
+        <span class="cota__line"></span><span class="cota__tick"></span>
+      </div>
+      <div class="cota cota--b" data-parallax="-10">
+        <span class="cota__label">Inspecciones</span>
+        <span class="cota__line"></span><span class="cota__tick"></span>
+      </div>
+      <div class="cota cota--c" data-parallax="-18">
+        <span class="cota__label">Gerencia de obra</span>
+        <span class="cota__line"></span><span class="cota__tick"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUIÉN ES ===================== -->
+  <section class="about" id="quien">
+    <div class="wrap">
+      <div class="about__card reveal">
+        <div class="about__portrait">
+          <figure class="slot" data-label="Retrato del Ing. Esteban Tenreiro Picón">
+            <img src="img/retrato-esteban.jpg" alt="Ing. Esteban Tenreiro Picón" data-optional />
+          </figure>
+          <div class="about__badge">Ing. Esteban Tenreiro Picón</div>
+        </div>
+        <div>
+          <div class="eyebrow" data-ref="A—1">Quién es él</div>
+          <h2>Esteban Tenreiro, ingeniero estructural</h2>
+          <p>
+            Al frente de la firma, dirige el proyecto, el cálculo y la supervisión de obra de cada trabajo,
+            en colaboración directa con el arquitecto autor. Su criterio se apoya en
+            <span data-years>22</span> años de ejercicio y en programas de cálculo propios, alineados con la
+            norma venezolana de construcciones sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019.
+          </p>
+          <div class="chips">
+            <span class="chip">Concreto armado</span>
+            <span class="chip">Acero</span>
+            <span class="chip">Madera</span>
+            <span class="chip">Supervisión e inspección</span>
+            <span class="chip">Gerencia de obras</span>
+          </div>
+          <a href="#contacto" class="btn btn--primary btn--sm" style="margin-top:28px">Escribir al despacho</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICIOS (banda oscura) ===================== -->
+  <section class="band" id="servicios">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow eyebrow--light" data-ref="A—2">Servicios</div>
+          <h2>Estructura, de la primera idea al último vaciado</h2>
+          <p>
+            Esteban Tenreiro &amp; Profesionales Asociados es un despacho dedicado por completo a las
+            estructuras, con un profundo énfasis en su diseño arquitectónico. Trabajamos junto a un amplio
+            colectivo de arquitectos, integrándonos al proyecto desde el anteproyecto para que la estructura
+            acompañe la idea en vez de corregirla al final.
+          </p>
+          <p>
+            En <span data-years>22</span> años el equipo ha proyectado la estructura, realizado el cálculo y
+            supervisado la construcción de más de 2.000.000 m² de edificaciones, abarcando todas las
+            tipologías arquitectónicas y estructurales del país.
+          </p>
+        </div>
+        <div class="reveal reveal--left">
+          <div class="eyebrow eyebrow--light" data-ref="A—3">Arquitectos asociados</div>
+          <ul class="architects" id="architects"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="accordion" id="accordion"></div>
+  </div>
+
+  <!-- ===================== CÓMO TRABAJAMOS ===================== -->
+  <section class="process" id="proceso">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow" data-ref="A—4">Cómo trabajamos</div>
+        <h2 style="margin-top:16px;font-size:clamp(30px,3.2vw,44px)">Cuatro etapas, entregas claras en cada una</h2>
+        <p style="margin-top:18px;max-width:56ch;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300">
+          Nos incorporamos desde el anteproyecto. Cada etapa cierra con documentos que el arquitecto y el
+          promotor pueden revisar, aprobar y llevar a permisología.
+        </p>
+      </div>
+      <div class="process__grid" id="processGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PROYECTOS ===================== -->
+  <section class="projects" id="proyectos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow" data-ref="A—5">Obras</div>
+          <h2>Proyectos</h2>
+        </div>
+        <div class="filters" id="projectFilters" role="group" aria-label="Filtrar proyectos"></div>
+      </div>
+      <div class="grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== NORTE ===================== -->
+  <section class="norte">
+    <div class="wrap">
+      <div class="norte__card reveal">
+        <div>
+          <div class="eyebrow eyebrow--light" data-ref="A—6">Norte Obras Civiles</div>
+          <h2>Contratistas con historial verificado</h2>
+          <p>
+            Ponemos a disposición de nuestros clientes contratistas por especialidad con los que ya hemos
+            construido antes. Conocemos su rendimiento, sus acabados y su cumplimiento en obra, y eso reduce
+            el riesgo de la ejecución.
+          </p>
+          <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer" class="btn btn--accent">
+            Visitar Norte Obras Civiles<span style="font-size:12px">↗</span>
+          </a>
+        </div>
+        <figure class="slot reveal reveal--img" data-label="Obra de Norte Obras Civiles">
+          <img src="img/norte-obra.jpeg" alt="Obra ejecutada por Norte Obras Civiles" data-optional />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ESTUDIANTES ===================== -->
+  <section class="students" id="estudiantes">
+    <div class="wrap">
+      <div class="students__card reveal">
+        <div class="students__head">
+          <div>
+            <div class="eyebrow" data-ref="A—7">Material de estudio</div>
+            <h2>Estudiantes</h2>
+            <p>Apuntes y ejercicios de análisis estructural. Descarga libre, sin registro.</p>
+          </div>
+          <div class="filters" id="downloadFilters" role="group" aria-label="Filtrar descargas"></div>
+        </div>
+        <div class="table">
+          <div class="table__head">
+            <div>Documento</div>
+            <div>Archivo</div>
+            <div>Acciones</div>
+          </div>
+          <div id="downloadRows"></div>
+        </div>
+        <p class="students__note">
+          Material docente de uso libre para fines académicos. Si un enlace falla, escríbenos a
+          <a href="mailto:info@tenreiro.com">info@tenreiro.com</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="contact__grid">
+        <div class="contact__info reveal">
+          <div class="eyebrow eyebrow--light" data-ref="A—8">Hablemos</div>
+          <h2>Contacto</h2>
+          <div class="contact__list">
+            <div>
+              <div class="contact__label">Correo</div>
+              <a href="mailto:info@tenreiro.com" class="contact__value">info@tenreiro.com</a>
+            </div>
+            <div>
+              <div class="contact__label">Teléfono</div>
+              <a href="tel:+582129930530" class="contact__value">+58(212) 993.05.30</a>
+            </div>
+            <div>
+              <div class="contact__label">Oficina</div>
+              <div class="contact__address">
+                Centro Integral Santa Rosa. Piso 1. Oficina 102.<br />
+                Santa Rosa de Lima, Caracas 1061 – Venezuela
+              </div>
+            </div>
+            <div>
+              <div class="contact__label">Qué incluir en tu mensaje</div>
+              <div class="contact__address">
+                Ubicación y uso de la edificación, metros cuadrados aproximados, número de niveles y
+                en qué etapa está el proyecto.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="nombre">Nombre y apellido *</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" name="correo" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="tipo">Tipo de solicitud</label>
+            <select id="tipo" name="tipo">
+              <option>Proyecto y cálculo estructural</option>
+              <option>Supervisión de obra</option>
+              <option>Inspección</option>
+              <option>Gerencia de obra</option>
+              <option>Asesoría puntual</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="mensaje">Cuéntanos del proyecto *</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+          <button type="button" class="robot" id="robotCheck" aria-pressed="false">
+            <span class="robot__box" aria-hidden="true"></span>
+            <span class="robot__label">No soy un robot</span>
+            <span class="robot__note">Verificación<br />antispam</span>
+          </button>
+          <button type="submit" class="btn btn--primary" id="submitBtn">Enviar mensaje</button>
+          <div class="form__note" id="formNote">Los campos marcados con * son obligatorios.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer__logo" data-brand>
+          <img src="img/logo-footer.png" alt="Esteban Tenreiro – Profesionales y Asociados" data-optional />
+          <span class="brand__text">Esteban Tenreiro<span>Profesionales asociados</span></span>
+        </div>
+        <p>
+          Centro Integral Santa Rosa. Piso 1. Oficina 102.<br />
+          Santa Rosa de Lima, Caracas 1061 – Venezuela
+        </p>
+      </div>
+      <div>
+        <div class="footer__title">Navegación</div>
+        <div class="footer__links">
+          <a href="#inicio">Inicio</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#proceso">Cómo trabajamos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__title">Recursos</div>
+        <div class="footer__links">
+          <a href="#estudiantes">Estudiantes</a>
+          <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte ↗</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__title">Contacto</div>
+        <div class="footer__links">
+          <a href="mailto:info@tenreiro.com">info@tenreiro.com</a>
+          <a href="tel:+582129930530">+58(212) 993.05.30</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© <span id="year">2026</span> Esteban Tenreiro – Profesionales y Asociados</span>
+      <span>Ingeniería estructural · Caracas</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== MODAL FICHA TÉCNICA ===================== -->
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalName" hidden>
+  <div class="modal__card" id="modalCard">
+    <button type="button" class="modal__close" id="modalClose" aria-label="Cerrar ficha técnica">×</button>
+    <div class="eyebrow" data-ref="F—01">Ficha técnica</div>
+    <h3 id="modalName">—</h3>
+    <dl class="modal__rows" id="modalRows"></dl>
+    <div class="modal__cta">
+      <a href="#contacto" class="btn btn--primary btn--sm" id="modalCta">Consultar un proyecto similar</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FLOTANTES ===================== -->
+<div class="floats">
+  <a class="fab fab--wa" id="whatsappFab" href="#" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.19.84.85-3.11-.2-.32a8.2 8.2 0 01-1.26-4.39c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+  </a>
+  <button type="button" class="fab fab--top" id="toTop" aria-label="Volver arriba">↑</button>
+</div>
+
+<!-- ===================== SEO: datos estructurados ===================== -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"Esteban Tenreiro – Profesionales y Asociados",
+  "description":"Despacho de ingeniería estructural en Caracas: proyecto y cálculo, supervisión, inspección y gerencia de obras civiles.",
+  "url":"https://www.tenreiro.com/",
+  "email":"info@tenreiro.com",
+  "telephone":"+582129930530",
+  "areaServed":"Venezuela",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Centro Integral Santa Rosa, Piso 1, Oficina 102, Santa Rosa de Lima",
+    "addressLocality":"Caracas",
+    "postalCode":"1061",
+    "addressCountry":"VE"
+  },
+  "knowsAbout":["Ingeniería estructural","Cálculo sismorresistente","COVENIN 1756","Supervisión de obra","Gerencia de proyectos"]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     CONFIGURACIÓN — lo único que hace falta ajustar
+     ============================================================ */
+
+  /* WhatsApp: número en formato internacional, sin +, espacios ni guiones.
+     Déjalo vacío ("") y el botón flotante no aparece. Ej: "584121234567" */
+  var WHATSAPP = "";
+
+  /* Envío del formulario. Crea una clave gratis en https://web3forms.com
+     y pégala aquí. Mientras esté vacía, el formulario abre el correo del
+     usuario con el mensaje ya redactado (funciona igual, sin servidor). */
+  var WEB3FORMS_KEY = "";
+
+  /* Carpeta donde están los archivos de la sección Estudiantes */
+  var DL_FOLDER = "pdf/";
+
+  /* ============================================================
+     DATOS
+     ============================================================ */
+  var FOUNDED = 2003;
+  var YEARS = new Date().getFullYear() - FOUNDED;
+
+  var ARCHITECTS = [
+    "Oscar Tenreiro",
+    "Ricardo Veiga",
+    "Lesmes Castañeda",
+    "Ignacio Cardona & Oberdan de Lucía",
+    "Marisabel Espinosa",
+    "Víctor Sánchez & Beltrán Haddad",
+    "Asier Albuquerque",
+    "AGV Arquitectos"
+  ];
+
+  var SERVICES = [
+    {
+      num: "01", title: "Proyecto y cálculo", img: "img/servicio-proyecto-calculo.jpg",
+      paras: [
+        "Diseñamos y calculamos estructuras en concreto armado, acero y madera, para cualquier tipología: vivienda, oficina, comercio, industria, salud y educación.",
+        "El cálculo se apoya en programas de nuestra propiedad, verificados contra la norma venezolana de construcciones sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019. Entregamos memoria de cálculo, planos estructurales y despiece de acero."
+      ]
+    },
+    {
+      num: "02", title: "Supervisión", img: "img/servicio-supervision.jpg",
+      paras: [
+        "Visitamos la obra con frecuencia pactada y dejamos informe escrito de cada visita: qué se revisó, qué se aprobó y qué debe corregirse antes de continuar.",
+        "Supervisamos tanto proyectos propios como estructuras calculadas por terceros."
+      ]
+    },
+    {
+      num: "03", title: "Inspección", img: "img/servicio-inspeccion.jpg",
+      paras: [
+        "Control de armaduras antes del vaciado, seguimiento de vaciados y procesos constructivos, revisión de acabados, mediciones y control de valuaciones.",
+        "El promotor recibe un registro documentado de lo ejecutado, útil tanto para el pago por valuaciones como para cualquier reclamo posterior."
+      ]
+    },
+    {
+      num: "04", title: "Gerencia de obra", img: "img/servicio-gerencia-obra.jpg",
+      paras: [
+        "Presupuesto inicial, cronograma, flujo de caja, procura de materiales, selección de contratistas, control de calidad y mediciones, hasta la entrega final.",
+        "Ponemos a disposición contratistas por especialidad con los que ya hemos construido antes, lo que permite anticipar rendimientos y sostener la calidad de los acabados."
+      ]
+    },
+    {
+      num: "05", title: "Asesoría", img: "img/servicio-asesoria.jpg",
+      paras: [
+        "Consultas puntuales sobre una estructura existente, revisión de un cálculo de terceros o acompañamiento en la coordinación de obra, sin necesidad de contratar el proyecto completo."
+      ]
+    }
+  ];
+
+  var PROCESS = [
+    {
+      num: "01", title: "Anteproyecto",
+      text: "Nos sentamos con el arquitecto cuando la planta todavía se puede mover. Definimos sistema estructural, luces y predimensionado.",
+      items: ["Esquema estructural", "Predimensionado", "Estimado de incidencia de acero y concreto"]
+    },
+    {
+      num: "02", title: "Cálculo",
+      text: "Modelado y análisis sismorresistente de la edificación completa, con verificación de derivas y de los estados límites de la norma.",
+      items: ["Memoria de cálculo", "Modelo de análisis", "Verificación normativa"]
+    },
+    {
+      num: "03", title: "Planos",
+      text: "Documentación lista para permisología y para que el maestro de obra la lea sin interpretar.",
+      items: ["Planos estructurales", "Despiece de acero", "Detalles constructivos"]
+    },
+    {
+      num: "04", title: "Obra",
+      text: "Acompañamiento en sitio con la frecuencia que el proyecto requiera, hasta el último vaciado.",
+      items: ["Visitas con informe escrito", "Revisión previa al vaciado", "Cierre y entrega"]
+    }
+  ];
+
+  /* Los campos técnicos vacíos ("") no se muestran en la ficha.
+     Rellénalos cuando tengas el dato y aparecen solos.
+
+     img: "" muestra el panel técnico en lugar de la foto. Para agregar
+     una foto después, pon el archivo en img/ y escribe aquí su ruta,
+     por ejemplo: img: "img/proyecto-alto-bosco.jpg" */
+  var PROJECTS = [
+    {
+      name: "Ambulatorio Las Minas", category: "Obra Pública", year: "2007",
+      location: "Las Minas de Baruta, Caracas", client: "—", architect: "Oscar Tenreiro",
+      role: "Supervisión estructural de la construcción del ambulatorio",
+      area: "", levels: "", system: "", material: "",
+      img: ""   /* pendiente: img/proyecto-ambulatorio-las-minas.jpg */
+    },
+    {
+      name: "Residencias Alto Bosco", category: "Edificio", year: "2010",
+      location: "Altamira, Caracas", client: "—", architect: "Luis Fernando López Tarre",
+      role: "Supervisión estructural de la obra",
+      area: "", levels: "", system: "", material: "",
+      img: ""   /* pendiente: img/proyecto-alto-bosco.jpg */
+    },
+    {
+      name: "Nueva Sede Pioneer Canon", category: "Edificio", year: "—",
+      location: "La Urbina, Caracas", client: "—", architect: "Ricardo Veiga",
+      role: "Administración delegada en asociación con el arquitecto Ricardo Veiga, para la construcción del edificio en todas sus etapas",
+      area: "", levels: "", system: "", material: "",
+      img: ""   /* pendiente: img/proyecto-pioneer-canon.jpg */
+    },
+    {
+      name: "Seguros La Occidental", category: "Obra Privada", year: "—",
+      location: "La Urbina, Caracas", client: "Seguros La Occidental", architect: "Moisés Levy",
+      role: "Administración delegada en asociación con el arquitecto Moisés Levy, para la remodelación del edificio en todas sus etapas",
+      area: "", levels: "", system: "", material: "",
+      img: ""   /* pendiente: img/proyecto-seguros-la-occidental.jpg */
+    },
+    {
+      name: "Escuela de Marare", category: "Obra Pública", year: "—",
+      location: "Marare", client: "—", architect: "—",
+      role: "Inspección de la obra para la construcción de la escuela en Marare",
+      area: "", levels: "", system: "", material: "",
+      img: "img/proyecto-escuela-marare.jpg"
+    },
+    {
+      name: "Hotel Oripoto", category: "Obra Privada", year: "—",
+      location: "Urbanización Oripoto, Municipio El Hatillo, Caracas", client: "—",
+      architect: "Arq. Oscar R. Tenreiro Degwitz · Arq. Augusto Terán Barreto · Ing. Esteban Tenreiro Picón · Ing. Luciano Carestia · Ing. Eduardo Bazzetto",
+      role: "18 habitaciones (seis tipo suite de dos niveles en el piso superior), restaurante, zonas sociales y terrazas para eventos",
+      area: "", levels: "", system: "", material: "",
+      img: ""   /* pendiente: img/proyecto-hotel-oripoto.jpg */
+    }
+  ];
+
+  /* group: encabezado bajo el que aparece · kb: peso real del archivo
+     note: aclaración corta bajo el título (opcional) */
+  var DOWNLOADS = [
+    { group: "Apuntes", title: "Tema 1 · Matriz de desplazamiento y deformación",
+      file: "tema1matrizdesplazamientodeformacion-.pdf", kb: 4992 },
+    { group: "Apuntes", title: "Tema 2 · Aplicaciones del principio de trabajo virtual",
+      file: "tema2aplicacionesdelppiodetrabajovirtual-.pdf", kb: 5461 },
+    { group: "Apuntes", title: "Tema 3 · Método de las fuerzas",
+      file: "Apuntes-Tema-3.-Metodo-de-las-fuerzas.zip", kb: 7326, note: "Carpeta comprimida" },
+    { group: "Apuntes", title: "Tema 4 · Método de Cross",
+      file: "tema4metododecross.pdf", kb: 4388 },
+
+    { group: "Ejercicios", title: "Trabajo virtual",
+      file: "TrabajoVirtual.pdf", kb: 172 },
+    { group: "Ejercicios", title: "Capítulo I",
+      file: "Capitulo_I_parcial_1.pdf", kb: 542, note: "Primer parcial" },
+    { group: "Ejercicios", title: "Capítulos II, III y IV",
+      file: "Capitulo_II_III_IV(parcial_2).pdf", kb: 281, note: "Segundo parcial" },
+    { group: "Ejercicios", title: "Capítulo V",
+      file: "Capitulo_V(parcial_3).pdf", kb: 235, note: "Tercer parcial" },
+    { group: "Ejercicios", title: "Capítulos VI y VII",
+      file: "Capitulo_VI_VII(parcial_4).pdf", kb: 380, note: "Cuarto parcial" },
+    { group: "Ejercicios", title: "Capítulo VIII",
+      file: "Capitulo_VIII(parcial_5).pdf", kb: 288, note: "Quinto parcial" },
+
+    { group: "Temario", title: "Temario",
+      file: "temario.pdf", kb: 18 },
+    { group: "Temario", title: "Temario 2012",
+      file: "temario2012.pdf", kb: 73 }
+  ];
+
+  /* ============================================================
+     UTILIDADES
+     ============================================================ */
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var navOpen = false;
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function updateLock() {
+    var modalOpen = !document.getElementById("projectModal").hidden;
+    document.body.classList.toggle("is-locked", navOpen || modalOpen);
+  }
+
+  function fallbackImage(img) {
+    img.hidden = true;
+    var fig = img.closest(".slot");
+    if (fig) fig.classList.add("is-empty");
+    var brand = img.closest("[data-brand]");
+    if (brand) brand.classList.add("is-textonly");
+  }
+
+  function slot(label, src, alt, cls) {
+    var fig = el("figure", "slot" + (cls ? " " + cls : ""));
+    fig.setAttribute("data-label", label);
+
+    /* sin ruta no pedimos nada al servidor: se muestra el panel técnico */
+    if (!src) { fig.classList.add("is-empty"); return fig; }
+
+    var img = el("img");
+    img.src = src;
+    img.alt = alt;
+    img.loading = "lazy";
+    img.addEventListener("error", function () {
+      img.hidden = true;
+      fig.classList.add("is-empty");
+    });
+    if (img.complete && img.naturalWidth === 0) {
+      img.hidden = true;
+      fig.classList.add("is-empty");
+    }
+    fig.appendChild(img);
+    return fig;
+  }
+
+  function formatNumber(n) { return n.toLocaleString("es-VE"); }
+
+  $$("img[data-optional]").forEach(function (img) {
+    img.addEventListener("error", function () { fallbackImage(img); });
+    if (img.complete && img.naturalWidth === 0) fallbackImage(img);
+  });
+
+  /* ============================================================
+     AÑO Y CONTADORES
+     ============================================================ */
+  $("#year").textContent = String(new Date().getFullYear());
+  $$("[data-years]").forEach(function (n) { n.textContent = String(YEARS); });
+
+  var yearsCounter = $("#yearsCount");
+  if (yearsCounter) {
+    yearsCounter.setAttribute("data-count", String(YEARS));
+    yearsCounter.textContent = YEARS + " años";
+  }
+
+  function animateCount(node) {
+    var target = parseInt(node.getAttribute("data-count"), 10);
+    var from = parseInt(node.getAttribute("data-from"), 10);
+    var suffix = node.getAttribute("data-suffix") || "";
+    if (isNaN(target)) return;
+    if (isNaN(from)) from = 0;
+    if (reduced) { node.textContent = formatNumber(target) + suffix; return; }
+
+    var start = null, dur = 1500;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      node.textContent = formatNumber(Math.round(from + (target - from) * eased)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ============================================================
+     REVELADO AL SCROLL
+     ============================================================ */
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      $$("[data-count]", entry.target).forEach(animateCount);
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+  function watch(n) { revealObserver.observe(n); }
+  $$(".reveal").forEach(watch);
+  $$("#inicio [data-count]").forEach(animateCount);
+
+  /* ============================================================
+     PARALLAX SUAVE DE LAS COTAS
+     ============================================================ */
+  var heroMedia = $("#heroMedia");
+  if (heroMedia && !reduced && window.matchMedia("(pointer: fine)").matches) {
+    heroMedia.addEventListener("mousemove", function (e) {
+      var r = heroMedia.getBoundingClientRect();
+      var dx = (e.clientX - r.left) / r.width - 0.5;
+      var dy = (e.clientY - r.top) / r.height - 0.5;
+      $$("[data-parallax]", heroMedia).forEach(function (n) {
+        var k = parseFloat(n.getAttribute("data-parallax"));
+        n.style.transform = "translate(" + (dx * k) + "px," + (dy * k) + "px)";
+      });
+    });
+    heroMedia.addEventListener("mouseleave", function () {
+      $$("[data-parallax]", heroMedia).forEach(function (n) { n.style.transform = ""; });
+    });
+  }
+
+  /* ============================================================
+     ARQUITECTOS
+     ============================================================ */
+  var archList = $("#architects");
+  ARCHITECTS.forEach(function (name, i) {
+    var li = el("li", "reveal");
+    li.style.setProperty("--d", (i * 0.06) + "s");
+    li.appendChild(el("span", "dot"));
+    li.appendChild(el("span", null, name));
+    archList.appendChild(li);
+    watch(li);
+  });
+
+  /* ============================================================
+     CÓMO TRABAJAMOS
+     ============================================================ */
+  var processGrid = $("#processGrid");
+  PROCESS.forEach(function (s, i) {
+    var step = el("div", "step reveal");
+    step.style.setProperty("--d", (i * 0.09) + "s");
+    step.appendChild(el("div", "step__num", s.num));
+    step.appendChild(el("h3", null, s.title));
+    step.appendChild(el("p", null, s.text));
+    var ul = el("ul");
+    s.items.forEach(function (i) { ul.appendChild(el("li", null, i)); });
+    step.appendChild(ul);
+    processGrid.appendChild(step);
+    watch(step);
+  });
+
+  /* ============================================================
+     ACORDEÓN DE SERVICIOS
+     ============================================================ */
+  var accWrap = $("#accordion");
+
+  function openAcc(item) {
+    var body = $(".acc__body", item);
+    item.classList.add("is-open");
+    $(".acc__head", item).setAttribute("aria-expanded", "true");
+    body.style.height = body.firstElementChild.offsetHeight + "px";
+    clearTimeout(body._t);
+    /* al terminar la transición liberamos la altura: si la imagen carga
+       después, la tarjeta crece sola y ya no se recorta por abajo */
+    body._t = setTimeout(function () {
+      if (item.classList.contains("is-open")) body.style.height = "auto";
+    }, 500);
+  }
+  function closeAcc(item) {
+    var body = $(".acc__body", item);
+    clearTimeout(body._t);
+    if (!item.classList.contains("is-open")) { body.style.height = "0px"; return; }
+    body.style.height = body.firstElementChild.offsetHeight + "px";
+    void body.offsetHeight; /* reflow */
+    item.classList.remove("is-open");
+    $(".acc__head", item).setAttribute("aria-expanded", "false");
+    requestAnimationFrame(function () { body.style.height = "0px"; });
+  }
+
+  SERVICES.forEach(function (s, i) {
+    var item = el("div", "acc reveal");
+
+    var head = el("button", "acc__head");
+    head.type = "button";
+    head.setAttribute("aria-expanded", "false");
+    head.appendChild(el("span", "acc__num", s.num));
+    head.appendChild(el("span", "acc__title", s.title));
+    head.appendChild(el("span", "acc__sign", "+"));
+
+    var body = el("div", "acc__body");
+    var inner = el("div", "acc__inner");
+    inner.appendChild(slot("Imagen del servicio: " + s.title, s.img, "Servicio de " + s.title));
+
+    var text = el("div", "acc__text");
+    s.paras.forEach(function (p) { text.appendChild(el("p", null, p)); });
+    var cta = el("a", "btn btn--accent btn--sm", "Solicitar este servicio");
+    cta.href = "#contacto";
+    text.appendChild(cta);
+    inner.appendChild(text);
+    body.appendChild(inner);
+
+    item.appendChild(head);
+    item.appendChild(body);
+    accWrap.appendChild(item);
+    watch(item);
+
+    head.addEventListener("click", function () {
+      var wasOpen = item.classList.contains("is-open");
+      $$(".acc", accWrap).forEach(closeAcc);
+      if (!wasOpen) openAcc(item);
+    });
+
+    if (i === 0) requestAnimationFrame(function () { openAcc(item); });
+  });
+
+  function syncAcc() {
+    $$(".acc.is-open", accWrap).forEach(function (item) {
+      $(".acc__body", item).style.height = "auto";
+    });
+  }
+  window.addEventListener("resize", syncAcc);
+  $$("#accordion img").forEach(function (img) { img.addEventListener("load", syncAcc); });
+
+  /* ============================================================
+     PROYECTOS
+     ============================================================ */
+  var PROJECT_FILTERS = ["Todos", "Edificio", "Obra Pública", "Obra Privada"];
+  var projectFilter = "Todos";
+  var filtersWrap = $("#projectFilters");
+  var grid = $("#projectGrid");
+
+  PROJECT_FILTERS.forEach(function (label) {
+    var b = el("button", label === projectFilter ? "is-active" : null, label);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      projectFilter = label;
+      $$("button", filtersWrap).forEach(function (x) { x.classList.remove("is-active"); });
+      b.classList.add("is-active");
+      renderProjects();
+    });
+    filtersWrap.appendChild(b);
+  });
+
+  function projectMeta(p) {
+    return [p.location, p.year === "—" ? null : p.year].filter(Boolean).join(" · ");
+  }
+
+  function renderProjects() {
+    grid.innerHTML = "";
+    PROJECTS.filter(function (p) {
+      return projectFilter === "Todos" || p.category === projectFilter;
+    }).forEach(function (p, i) {
+      var card = el("article", "card");
+      card.tabIndex = 0;
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-label", "Ver ficha técnica de " + p.name);
+      card.style.animationDelay = (reduced ? 0 : i * 60) + "ms";
+
+      var media = slot(p.img ? "Foto del proyecto" : "", p.img, p.name, "card__media");
+      media.appendChild(el("div", "card__cat", p.category));
+      card.appendChild(media);
+
+      var body = el("div", "card__body");
+      body.appendChild(el("div", "card__name", p.name));
+      body.appendChild(el("div", "card__meta", projectMeta(p)));
+      var link = el("div", "card__link", "Ver ficha técnica ");
+      link.appendChild(el("span", null, "→"));
+      body.appendChild(link);
+      card.appendChild(body);
+
+      card.addEventListener("click", function () { openModal(p); });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(p); }
+      });
+      grid.appendChild(card);
+    });
+  }
+  renderProjects();
+
+  /* ============================================================
+     MODAL FICHA TÉCNICA
+     ============================================================ */
+  var modal = $("#projectModal");
+  var modalCard = $("#modalCard");
+  var modalName = $("#modalName");
+  var modalRows = $("#modalRows");
+  var modalClose = $("#modalClose");
+  var lastFocused = null;
+
+  function openModal(p) {
+    modalName.textContent = p.name;
+    modalRows.innerHTML = "";
+    [
+      ["Categoría", p.category],
+      ["Año", p.year],
+      ["Ubicación", p.location],
+      ["Cliente", p.client],
+      ["Arquitectos", p.architect],
+      ["Área construida", p.area],
+      ["Niveles", p.levels],
+      ["Sistema estructural", p.system],
+      ["Material", p.material],
+      ["Participación", p.role]
+    ].forEach(function (pair) {
+      if (!pair[1]) return;
+      var row = el("div", "row");
+      row.appendChild(el("dt", null, pair[0]));
+      row.appendChild(el("dd", null, pair[1]));
+      modalRows.appendChild(row);
+    });
+
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    requestAnimationFrame(function () { modal.classList.add("is-open"); });
+    updateLock();
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    updateLock();
+    window.setTimeout(function () { modal.hidden = true; }, reduced ? 0 : 300);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  modalClose.addEventListener("click", closeModal);
+  $("#modalCta").addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+  modalCard.addEventListener("click", function (e) { e.stopPropagation(); });
+
+  /* ============================================================
+     MENÚ MÓVIL
+     ============================================================ */
+  var nav = $("#mainNav");
+  var navToggle = $("#navToggle");
+  var scrim = $("#navScrim");
+
+  function setNav(open) {
+    navOpen = open;
+    nav.classList.toggle("is-open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    if (open) {
+      scrim.hidden = false;
+      requestAnimationFrame(function () { scrim.classList.add("is-open"); });
+    } else {
+      scrim.classList.remove("is-open");
+      window.setTimeout(function () { if (!navOpen) scrim.hidden = true; }, reduced ? 0 : 300);
+    }
+    updateLock();
+  }
+
+  navToggle.addEventListener("click", function () { setNav(!navOpen); });
+  scrim.addEventListener("click", function () { setNav(false); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a") && navOpen) setNav(false); });
+
+  var desktop = window.matchMedia("(min-width: 901px)");
+  function syncNav() { if (desktop.matches && navOpen) setNav(false); }
+  if (desktop.addEventListener) desktop.addEventListener("change", syncNav);
+  else desktop.addListener(syncNav);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (!modal.hidden) closeModal();
+    else if (navOpen) setNav(false);
+  });
+
+  /* ============================================================
+     DESCARGAS
+     ============================================================ */
+  var DL_FILTERS = ["Todos", "Apuntes", "Ejercicios", "Temario"];
+  var dlFilter = "Todos";
+  var dlWrap = $("#downloadFilters");
+  var dlRows = $("#downloadRows");
+
+  DL_FILTERS.forEach(function (label) {
+    var b = el("button", label === dlFilter ? "is-active" : null, label);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      dlFilter = label;
+      $$("button", dlWrap).forEach(function (x) { x.classList.remove("is-active"); });
+      b.classList.add("is-active");
+      renderDownloads();
+    });
+    dlWrap.appendChild(b);
+  });
+
+  function fileExt(name) {
+    var i = name.lastIndexOf(".");
+    return i < 0 ? "" : name.slice(i + 1).toUpperCase();
+  }
+
+  function fileSize(kb) {
+    if (!kb) return "";
+    if (kb < 1024) return kb + " KB";
+    return (kb / 1024).toFixed(1).replace(".", ",") + " MB";
+  }
+
+  function fileURL(d) { return DL_FOLDER + encodeURIComponent(d.file); }
+
+  function downloadRow(d) {
+    var ext = fileExt(d.file);
+    var row = el("div", "table__row");
+
+    var titleCell = el("div");
+    titleCell.appendChild(el("div", "dl__title", d.title));
+    if (d.note) titleCell.appendChild(el("div", "dl__meta", d.note));
+    row.appendChild(titleCell);
+
+    var fileCell = el("div", "dl__file");
+    fileCell.appendChild(el("span", "dl__tag" + (ext === "ZIP" ? " dl__tag--zip" : ""), ext));
+    fileCell.appendChild(el("span", "dl__size", fileSize(d.kb)));
+    row.appendChild(fileCell);
+
+    var action = el("div", "dl__action");
+
+    /* el ZIP no se puede previsualizar en el navegador */
+    if (ext === "PDF") {
+      var view = el("a", "dl__view");
+      view.href = fileURL(d);
+      view.target = "_blank";
+      view.rel = "noopener noreferrer";
+      view.setAttribute("aria-label", "Abrir " + d.title + " en una pestaña nueva");
+      view.appendChild(document.createTextNode("VER"));
+      action.appendChild(view);
+    }
+
+    var a = el("a", "dl__btn");
+    a.href = fileURL(d);
+    a.setAttribute("download", "");
+    a.setAttribute("aria-label", "Descargar " + d.title + " (" + ext + ", " + fileSize(d.kb) + ")");
+    a.appendChild(document.createTextNode("DESCARGAR"));
+    a.appendChild(el("span", null, "↓"));
+    action.appendChild(a);
+    row.appendChild(action);
+
+    return row;
+  }
+
+  function renderDownloads() {
+    dlRows.innerHTML = "";
+    var list = DOWNLOADS.filter(function (d) {
+      return dlFilter === "Todos" || d.group === dlFilter;
+    });
+
+    if (!list.length) {
+      dlRows.appendChild(el("div", "table__empty", "No hay material en esta categoría todavía."));
+      return;
+    }
+
+    var lastGroup = null;
+    list.forEach(function (d) {
+      if (d.group !== lastGroup) {
+        dlRows.appendChild(el("div", "table__group", d.group));
+        lastGroup = d.group;
+      }
+      dlRows.appendChild(downloadRow(d));
+    });
+  }
+  renderDownloads();
+
+  /* ============================================================
+     FORMULARIO
+     ============================================================ */
+  var form = $("#contactForm");
+  var robot = $("#robotCheck");
+  var note = $("#formNote");
+  var submitBtn = $("#submitBtn");
+  var robotChecked = false;
+
+  robot.addEventListener("click", function () {
+    robotChecked = !robotChecked;
+    robot.classList.toggle("is-checked", robotChecked);
+    robot.setAttribute("aria-pressed", robotChecked ? "true" : "false");
+    $(".robot__box", robot).textContent = robotChecked ? "✓" : "";
+  });
+
+  function setNote(msg, kind) {
+    note.textContent = msg;
+    note.classList.toggle("is-error", kind === "error");
+    note.classList.toggle("is-ok", kind === "ok");
+  }
+
+  function markError(id, on) {
+    var f = $("#" + id).closest(".field");
+    if (f) f.classList.toggle("has-error", on);
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var nombre = $("#nombre").value.trim();
+    var correo = $("#correo").value.trim();
+    var tipo = $("#tipo").value;
+    var mensaje = $("#mensaje").value.trim();
+    var validMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+
+    markError("nombre", !nombre);
+    markError("correo", !correo || !validMail);
+    markError("mensaje", !mensaje);
+
+    if (!nombre || !correo || !mensaje) {
+      setNote("Completa los campos obligatorios antes de enviar.", "error");
+      return;
+    }
+    if (!validMail) {
+      setNote("Revisa el correo: falta el @ o el dominio.", "error");
+      $("#correo").focus();
+      return;
+    }
+    if (!robotChecked) {
+      setNote("Marca la casilla “No soy un robot” para continuar.", "error");
+      return;
+    }
+
+    var cuerpo = "Nombre: " + nombre + "\nCorreo: " + correo + "\nSolicitud: " + tipo + "\n\n" + mensaje;
+
+    function success() {
+      setNote("Mensaje enviado. Te responderemos al correo indicado.", "ok");
+      submitBtn.textContent = "Mensaje enviado";
+      submitBtn.disabled = true;
+      form.reset();
+      robotChecked = false;
+      robot.classList.remove("is-checked");
+      robot.setAttribute("aria-pressed", "false");
+      $(".robot__box", robot).textContent = "";
+    }
+
+    if (!WEB3FORMS_KEY) {
+      // Sin servicio configurado: abrimos el correo del usuario con todo redactado
+      window.location.href = "mailto:info@tenreiro.com?subject=" +
+        encodeURIComponent("Consulta web — " + tipo) + "&body=" + encodeURIComponent(cuerpo);
+      setNote("Se abrió tu programa de correo con el mensaje listo para enviar.", "ok");
+      return;
+    }
+
+    setNote("Enviando…", null);
+    submitBtn.disabled = true;
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: "Consulta web — " + tipo,
+        from_name: nombre,
+        email: correo,
+        message: cuerpo
+      })
+    }).then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.success) success();
+        else {
+          submitBtn.disabled = false;
+          setNote("No se pudo enviar. Escríbenos a info@tenreiro.com.", "error");
+        }
+      })
+      .catch(function () {
+        submitBtn.disabled = false;
+        setNote("Sin conexión con el servidor. Escríbenos a info@tenreiro.com.", "error");
+      });
+  });
+
+  /* ============================================================
+     WHATSAPP
+     ============================================================ */
+  var wa = $("#whatsappFab");
+  if (WHATSAPP) {
+    wa.href = "https://wa.me/" + WHATSAPP + "?text=" +
+      encodeURIComponent("Hola, escribo desde la web. Quisiera consultar sobre un proyecto.");
+    wa.hidden = false;
+  }
+
+  /* ============================================================
+     HEADER, PROGRESO, SCROLL SPY, VOLVER ARRIBA
+     ============================================================ */
+  var header = $("#siteHeader");
+  var toTop = $("#toTop");
+  var bar = $("#progressBar");
+  var navLinks = $$('#mainNav a[href^="#"]');
+  var sections = navLinks
+    .map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); })
+    .filter(Boolean)
+    .sort(function (a, b) {   /* orden real del documento, no el del menú */
+      return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+    });
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.scrollY || window.pageYOffset;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+
+      header.classList.toggle("is-scrolled", y > 30);
+      toTop.classList.toggle("is-visible", y > 600);
+      bar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+
+      var current = sections[0];
+      sections.forEach(function (sec) {
+        if (sec.getBoundingClientRect().top <= 150) current = sec;
+      });
+      if (max > 0 && max - y < 4) current = sections[sections.length - 1];
+      navLinks.forEach(function (a) {
+        a.classList.toggle("is-active", !!current && a.getAttribute("href") === "#" + current.id);
+      });
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  });
+})();
+</script>
+
+</body>
+</html>
