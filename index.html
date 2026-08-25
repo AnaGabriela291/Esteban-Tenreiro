@@ -506,7 +506,15 @@ a.contact__value:hover::after{transform:scaleX(1)}
 }
 
 @media (max-width:900px){
-  .nav-toggle{display:inline-flex}
+  /* el blur del header creaba bloque contenedor para position:fixed:
+     el panel se anclaba al header en vez de a la pantalla */
+  .site-header{backdrop-filter:none;-webkit-backdrop-filter:none}
+  /* el scrim (80) tapaba el panel (85 dentro del contexto 70 del header) */
+  .nav-scrim{z-index:60}
+  /* la X debe quedar por encima del panel para poder cerrar */
+  .nav-toggle{display:inline-flex;position:relative;z-index:88}
+  body.is-locked .site-header{background:transparent;box-shadow:none}
+  body.is-locked .floats{opacity:0;pointer-events:none}
   .nav{position:fixed;top:0;right:0;z-index:85;margin:0;height:100vh;height:100dvh;width:min(330px,88vw);padding:96px 20px 28px;border:none;border-radius:0;background:#fff;box-shadow:-18px 0 50px rgba(9,32,52,.25);display:flex;flex-direction:column;align-items:stretch;gap:6px;overflow-y:auto;transform:translateX(100%);visibility:hidden;transition:transform .38s var(--ease),visibility .38s var(--ease)}
   .nav.is-open{transform:none;visibility:visible}
   .nav__title{display:block}
