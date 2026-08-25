@@ -281,16 +281,37 @@ section{position:relative}
 .modal[hidden]{display:none}
 .modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:24px;background:rgba(9,32,52,.72);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s var(--ease)}
 .modal.is-open{opacity:1;visibility:visible}
-.modal__card{background:#fff;border-radius:28px;max-width:720px;width:100%;max-height:86vh;overflow:auto;padding:44px 46px 46px;position:relative;transform:translateY(20px) scale(.98);transition:transform .35s var(--ease)}
+.modal__card{background:#fff;border-radius:28px;max-width:1080px;width:100%;max-height:88vh;min-height:460px;overflow:hidden;padding:0;position:relative;transform:translateY(20px) scale(.98);transition:transform .35s var(--ease);display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:stretch}
 .modal.is-open .modal__card{transform:none}
-.modal__close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(15,61,99,.14);background:#fff;font-size:20px;line-height:1;color:var(--navy);cursor:pointer;transition:all .25s var(--ease)}
+.modal__close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(15,61,99,.14);background:#fff;font-size:20px;line-height:1;color:var(--navy);cursor:pointer;transition:all .25s var(--ease);z-index:6}
 .modal__close:hover{background:var(--navy);color:#fff;transform:rotate(90deg)}
+.modal__gallery{position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--navy-deep)}
+.modal__info{min-width:0;min-height:0;overflow:auto;padding:44px 44px 44px 40px}
 .modal h3{margin-top:12px;font-size:31px}
 .modal__rows{margin-top:26px;display:grid;gap:9px}
 .row{background:var(--soft);border-radius:14px;padding:14px 20px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:baseline}
 .row dt{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);font-weight:500}
 .row dd{margin:0;font-size:15px;color:var(--navy);font-weight:400}
 .modal__cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---- carrusel ---- */
+.carousel{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--navy-deep)}
+.carousel__track{position:absolute;inset:0;display:flex;transition:transform .5s var(--ease);will-change:transform}
+.carousel__slide{position:relative;flex:0 0 100%;width:100%;height:100%}
+.carousel__slide img{width:100%;height:100%;object-fit:cover}
+.carousel__nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.92);color:var(--navy);font-size:24px;line-height:1;display:grid;place-items:center;cursor:pointer;z-index:3;box-shadow:0 8px 20px rgba(9,32,52,.28);transition:all .25s var(--ease)}
+.carousel__nav:hover{background:var(--accent);color:#fff}
+.carousel__nav--prev{left:14px}
+.carousel__nav--next{right:14px}
+.carousel__counter{position:absolute;top:14px;left:14px;z-index:3;background:rgba(9,32,52,.62);color:#fff;font-size:11.5px;letter-spacing:.06em;padding:6px 12px;border-radius:999px;font-variant-numeric:tabular-nums}
+.carousel__dots{display:flex;justify-content:center;gap:7px;padding:14px 12px;background:var(--navy-deep)}
+.carousel__dots:empty{display:none}
+.carousel__dots button{width:7px;height:7px;padding:0;border:none;border-radius:50%;background:rgba(255,255,255,.32);cursor:pointer;transition:all .25s var(--ease)}
+.carousel__dots button:hover{background:rgba(255,255,255,.6)}
+.carousel__dots button.is-active{background:var(--accent);width:20px;border-radius:999px}
+.carousel.is-single .carousel__nav,.carousel.is-single .carousel__counter{display:none}
+.carousel.is-empty .carousel__nav,.carousel.is-empty .carousel__counter{display:none}
+.carousel.is-empty::after{content:"Fotografías próximamente";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px}
 
 /* ============================================================
    10. NORTE
@@ -540,7 +561,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
   .filters button{flex:0 0 auto}
   .students__head .filters{justify-content:flex-start;margin-left:0}
 
-  .modal__card{padding:36px 26px 30px;border-radius:24px}
+  .modal__card{grid-template-columns:1fr;min-height:0;max-height:90vh;overflow:auto;border-radius:24px}
+  .modal__info{overflow:visible;padding:30px 26px 32px}
+  .carousel{flex:none;aspect-ratio:4/3;min-height:240px}
   .modal h3{font-size:26px}
   .row{grid-template-columns:1fr;gap:4px}
 
@@ -582,10 +605,13 @@ a.contact__value:hover::after{transform:scaleX(1)}
   .grid{grid-template-columns:1fr;gap:18px}
 
   .modal{padding:0;place-items:end center}
-  .modal__card{max-height:92vh;max-height:92dvh;border-radius:24px 24px 0 0;padding:32px 20px 28px}
+  .modal__card{max-height:92vh;max-height:92dvh;border-radius:24px 24px 0 0}
+  .modal__info{padding:26px 20px 28px}
   .modal h3{font-size:23px}
-  .modal__close{top:14px;right:14px}
+  .modal__close{top:14px;right:14px;background:rgba(255,255,255,.94)}
   .modal__cta .btn{width:100%}
+  .carousel{aspect-ratio:3/2;min-height:200px}
+  .carousel__nav{width:36px;height:36px;font-size:20px}
 
   .norte__card .slot{height:220px}
   .norte__card .btn{width:100%}
@@ -603,6 +629,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
   .reveal,.seq > *,.hero__media,.cota,.acc__inner > *{opacity:1 !important;transform:none !important}
+  .carousel__track{transition:none !important}
 }
 </style>
 </head>
@@ -955,11 +982,24 @@ a.contact__value:hover::after{transform:scaleX(1)}
 <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalName" hidden>
   <div class="modal__card" id="modalCard">
     <button type="button" class="modal__close" id="modalClose" aria-label="Cerrar ficha técnica">×</button>
-    <div class="eyebrow" data-ref="F—01">Ficha técnica</div>
-    <h3 id="modalName">—</h3>
-    <dl class="modal__rows" id="modalRows"></dl>
-    <div class="modal__cta">
-      <a href="#contacto" class="btn btn--primary btn--sm" id="modalCta">Consultar un proyecto similar</a>
+
+    <div class="modal__gallery">
+      <div class="carousel" id="modalCarousel">
+        <div class="carousel__track" id="carouselTrack"></div>
+        <div class="carousel__counter" id="carouselCounter"></div>
+        <button type="button" class="carousel__nav carousel__nav--prev" id="carouselPrev" aria-label="Imagen anterior">‹</button>
+        <button type="button" class="carousel__nav carousel__nav--next" id="carouselNext" aria-label="Imagen siguiente">›</button>
+      </div>
+      <div class="carousel__dots" id="carouselDots"></div>
+    </div>
+
+    <div class="modal__info">
+      <div class="eyebrow" data-ref="F—01">Ficha técnica</div>
+      <h3 id="modalName">—</h3>
+      <dl class="modal__rows" id="modalRows"></dl>
+      <div class="modal__cta">
+        <a href="#contacto" class="btn btn--primary btn--sm" id="modalCta">Consultar un proyecto similar</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1094,52 +1134,76 @@ a.contact__value:hover::after{transform:scaleX(1)}
   /* Los campos técnicos vacíos ("") no se muestran en la ficha.
      Rellénalos cuando tengas el dato y aparecen solos.
 
-     img: "" muestra el panel técnico en lugar de la foto. Para agregar
-     una foto después, pon el archivo en img/ y escribe aquí su ruta,
-     por ejemplo: img: "img/proyecto-alto-bosco.jpg" */
+     images: rutas del carrusel, en orden. La primera es la portada de la
+     tarjeta. Las que no existan se descartan solas, así que puedes dejar
+     las seis y subir las fotos poco a poco.
+     Carpeta sugerida: img/proyectos/<slug>/01.jpg … 06.jpg */
   var PROJECTS = [
     {
-      name: "Ambulatorio Las Minas", category: "Obra Pública", year: "2007",
-      location: "Las Minas de Baruta, Caracas", client: "—", architect: "Oscar Tenreiro",
-      role: "Supervisión estructural de la construcción del ambulatorio",
+      name: "Acuarela 22", category: "Obra Privada", year: "2022",
+      location: "", client: "", architect: "",
+      role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      img: ""   /* pendiente: img/proyecto-ambulatorio-las-minas.jpg */
+      images: [
+        "img/proyectos/acuarela-22/01.jpg","img/proyectos/acuarela-22/02.jpg",
+        "img/proyectos/acuarela-22/03.jpg","img/proyectos/acuarela-22/04.jpg",
+        "img/proyectos/acuarela-22/05.jpg","img/proyectos/acuarela-22/06.jpg"
+      ]
     },
     {
-      name: "Residencias Alto Bosco", category: "Edificio", year: "2010",
-      location: "Altamira, Caracas", client: "—", architect: "Luis Fernando López Tarre",
-      role: "Supervisión estructural de la obra",
+      name: "Casa 30", category: "Obra Privada", year: "2023",
+      location: "", client: "", architect: "",
+      role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      img: ""   /* pendiente: img/proyecto-alto-bosco.jpg */
+      images: [
+        "img/proyectos/casa-30/01.jpg","img/proyectos/casa-30/02.jpg",
+        "img/proyectos/casa-30/03.jpg","img/proyectos/casa-30/04.jpg",
+        "img/proyectos/casa-30/05.jpg","img/proyectos/casa-30/06.jpg"
+      ]
     },
     {
-      name: "Nueva Sede Pioneer Canon", category: "Edificio", year: "—",
-      location: "La Urbina, Caracas", client: "—", architect: "Ricardo Veiga",
-      role: "Administración delegada en asociación con el arquitecto Ricardo Veiga, para la construcción del edificio en todas sus etapas",
+      name: "Margarita Real 2", category: "Obra Privada", year: "2023",
+      location: "", client: "", architect: "",
+      role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      img: ""   /* pendiente: img/proyecto-pioneer-canon.jpg */
+      images: [
+        "img/proyectos/margarita-real-2/01.jpg","img/proyectos/margarita-real-2/02.jpg",
+        "img/proyectos/margarita-real-2/03.jpg","img/proyectos/margarita-real-2/04.jpg",
+        "img/proyectos/margarita-real-2/05.jpg","img/proyectos/margarita-real-2/06.jpg"
+      ]
     },
     {
-      name: "Seguros La Occidental", category: "Obra Privada", year: "—",
-      location: "La Urbina, Caracas", client: "Seguros La Occidental", architect: "Moisés Levy",
-      role: "Administración delegada en asociación con el arquitecto Moisés Levy, para la remodelación del edificio en todas sus etapas",
+      name: "Quinta Los 3", category: "Obra Privada", year: "2024",
+      location: "", client: "", architect: "",
+      role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      img: ""   /* pendiente: img/proyecto-seguros-la-occidental.jpg */
+      images: [
+        "img/proyectos/quinta-los-3/01.jpg","img/proyectos/quinta-los-3/02.jpg",
+        "img/proyectos/quinta-los-3/03.jpg","img/proyectos/quinta-los-3/04.jpg",
+        "img/proyectos/quinta-los-3/05.jpg","img/proyectos/quinta-los-3/06.jpg"
+      ]
     },
     {
-      name: "Escuela de Marare", category: "Obra Pública", year: "—",
-      location: "Marare", client: "—", architect: "—",
-      role: "Inspección de la obra para la construcción de la escuela en Marare",
+      name: "Quinta Mariajota", category: "Obra Privada", year: "2025",
+      location: "", client: "", architect: "",
+      role: "Proyecto y construcción",
       area: "", levels: "", system: "", material: "",
-      img: "img/proyecto-escuela-marare.jpg"
+      images: [
+        "img/proyectos/quinta-mariajota/01.jpg","img/proyectos/quinta-mariajota/02.jpg",
+        "img/proyectos/quinta-mariajota/03.jpg","img/proyectos/quinta-mariajota/04.jpg",
+        "img/proyectos/quinta-mariajota/05.jpg","img/proyectos/quinta-mariajota/06.jpg"
+      ]
     },
     {
-      name: "Hotel Oripoto", category: "Obra Privada", year: "—",
-      location: "Urbanización Oripoto, Municipio El Hatillo, Caracas", client: "—",
-      architect: "Arq. Oscar R. Tenreiro Degwitz · Arq. Augusto Terán Barreto · Ing. Esteban Tenreiro Picón · Ing. Luciano Carestia · Ing. Eduardo Bazzetto",
-      role: "18 habitaciones (seis tipo suite de dos niveles en el piso superior), restaurante, zonas sociales y terrazas para eventos",
+      name: "Casa 205", category: "Obra Privada", year: "2026",
+      location: "", client: "", architect: "",
+      role: "Proyecto y gerencia",
       area: "", levels: "", system: "", material: "",
-      img: ""   /* pendiente: img/proyecto-hotel-oripoto.jpg */
+      images: [
+        "img/proyectos/casa-205/01.jpg","img/proyectos/casa-205/02.jpg",
+        "img/proyectos/casa-205/03.jpg","img/proyectos/casa-205/04.jpg",
+        "img/proyectos/casa-205/05.jpg","img/proyectos/casa-205/06.jpg"
+      ]
     }
   ];
 
@@ -1403,7 +1467,11 @@ a.contact__value:hover::after{transform:scaleX(1)}
   /* ============================================================
      PROYECTOS
      ============================================================ */
-  var PROJECT_FILTERS = ["Todos", "Edificio", "Obra Pública", "Obra Privada"];
+  /* los filtros salen de las categorías que realmente existen */
+  var PROJECT_FILTERS = ["Todos"].concat(
+    PROJECTS.map(function (p) { return p.category; })
+            .filter(function (c, i, a) { return c && a.indexOf(c) === i; })
+  );
   var projectFilter = "Todos";
   var filtersWrap = $("#projectFilters");
   var grid = $("#projectGrid");
@@ -1420,6 +1488,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
     filtersWrap.appendChild(b);
   });
 
+  /* con una sola categoría el filtro no aporta nada: se oculta */
+  if (PROJECT_FILTERS.length <= 2) filtersWrap.style.display = "none";
+
   function projectMeta(p) {
     return [p.location, p.year === "—" ? null : p.year].filter(Boolean).join(" · ");
   }
@@ -1435,7 +1506,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
       card.setAttribute("aria-label", "Ver ficha técnica de " + p.name);
       card.style.animationDelay = (reduced ? 0 : i * 60) + "ms";
 
-      var media = slot(p.img ? "Foto del proyecto" : "", p.img, p.name, "card__media");
+      var cover = (p.images && p.images[0]) || p.img || "";
+      var media = slot(cover ? "Foto del proyecto" : "", cover, p.name, "card__media");
       media.appendChild(el("div", "card__cat", p.category));
       card.appendChild(media);
 
@@ -1457,7 +1529,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   renderProjects();
 
   /* ============================================================
-     MODAL FICHA TÉCNICA
+     MODAL FICHA TÉCNICA + CARRUSEL
      ============================================================ */
   var modal = $("#projectModal");
   var modalCard = $("#modalCard");
@@ -1466,7 +1538,102 @@ a.contact__value:hover::after{transform:scaleX(1)}
   var modalClose = $("#modalClose");
   var lastFocused = null;
 
+  /* ---------- carrusel ---------- */
+  var carousel = $("#modalCarousel");
+  var track = $("#carouselTrack");
+  var dotsWrap = $("#carouselDots");
+  var counter = $("#carouselCounter");
+  var slides = [];
+  var slideIndex = 0;
+
+  function updateCarousel() {
+    var n = slides.length;
+    carousel.classList.toggle("is-empty", n === 0);
+    carousel.classList.toggle("is-single", n <= 1);
+    if (!n) { counter.textContent = ""; return; }
+    if (slideIndex >= n) slideIndex = n - 1;
+    if (slideIndex < 0) slideIndex = 0;
+    track.style.transform = "translateX(" + (-slideIndex * 100) + "%)";
+    counter.textContent = (slideIndex + 1) + " / " + n;
+    $$("button", dotsWrap).forEach(function (d, i) {
+      d.classList.toggle("is-active", i === slideIndex);
+    });
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = "";
+    if (slides.length <= 1) return;
+    slides.forEach(function (s, i) {
+      var d = el("button");
+      d.type = "button";
+      d.setAttribute("aria-label", "Ir a la imagen " + (i + 1));
+      d.addEventListener("click", function () { slideIndex = i; updateCarousel(); });
+      dotsWrap.appendChild(d);
+    });
+  }
+
+  /* si una foto no existe, su lámina desaparece del carrusel */
+  function dropSlide(s) {
+    var i = slides.indexOf(s);
+    if (i < 0) return;
+    slides.splice(i, 1);
+    if (s.parentNode) s.parentNode.removeChild(s);
+    if (i < slideIndex) slideIndex--;
+    buildDots();
+    updateCarousel();
+  }
+
+  function buildCarousel(p) {
+    track.innerHTML = "";
+    dotsWrap.innerHTML = "";
+    slides = [];
+    slideIndex = 0;
+
+    var list = (p.images && p.images.length) ? p.images.slice() : (p.img ? [p.img] : []);
+    list.forEach(function (src, i) {
+      var s = el("div", "carousel__slide");
+      var img = el("img");
+      img.src = src;
+      img.alt = p.name + " — imagen " + (i + 1);
+      img.loading = i === 0 ? "eager" : "lazy";
+      img.addEventListener("error", function () { dropSlide(s); });
+      s.appendChild(img);
+      track.appendChild(s);
+      slides.push(s);
+    });
+
+    buildDots();
+    updateCarousel();
+  }
+
+  function goSlide(step) {
+    if (slides.length < 2) return;
+    slideIndex = (slideIndex + step + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+  $("#carouselPrev").addEventListener("click", function () { goSlide(-1); });
+  $("#carouselNext").addEventListener("click", function () { goSlide(1); });
+
+  var touchX = null;
+  carousel.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener("touchend", function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 45) goSlide(dx < 0 ? 1 : -1);
+    touchX = null;
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (modal.hidden) return;
+    if (e.key === "ArrowLeft") goSlide(-1);
+    if (e.key === "ArrowRight") goSlide(1);
+  });
+
+  /* ---------- ficha ---------- */
   function openModal(p) {
+    buildCarousel(p);
+
     modalName.textContent = p.name;
     modalRows.innerHTML = "";
     [
@@ -1498,7 +1665,12 @@ a.contact__value:hover::after{transform:scaleX(1)}
   function closeModal() {
     modal.classList.remove("is-open");
     updateLock();
-    window.setTimeout(function () { modal.hidden = true; }, reduced ? 0 : 300);
+    window.setTimeout(function () {
+      modal.hidden = true;
+      track.innerHTML = "";
+      dotsWrap.innerHTML = "";
+      slides = [];
+    }, reduced ? 0 : 300);
     if (lastFocused && lastFocused.focus) lastFocused.focus();
   }
 
@@ -1800,3 +1972,4 @@ a.contact__value:hover::after{transform:scaleX(1)}
 
 </body>
 </html>
+
