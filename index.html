@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Esteban Tenreiro – Ingeniería estructural en Caracas</title>
-<meta name="description" content="Despacho de ingeniería estructural en Caracas: proyecto y cálculo, memoria de cálculo, planos y despiece, supervisión e inspección de obra y gerencia de proyectos. Norma COVENIN 1756." />
+<meta name="description" content="Despacho de ingeniería estructural en Caracas: proyecto y diseño, memoria de cálculo, planos y despiece, supervisión e inspección de obra y gerencia de proyectos. Norma COVENIN 1756." />
 <meta name="theme-color" content="#0F3D63" />
 <link rel="canonical" href="https://www.tenreiro.com/" />
 
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="es_VE" />
 <meta property="og:site_name" content="Esteban Tenreiro – Profesionales y Asociados" />
 <meta property="og:title" content="Esteban Tenreiro – Ingeniería estructural en Caracas" />
-<meta property="og:description" content="Proyecto, cálculo, supervisión e inspección de estructuras. Más de 2.000.000 m² proyectados junto a los principales arquitectos del país." />
+<meta property="og:description" content="Proyecto, diseño, supervisión e inspección de estructuras. Más de 3.800.000 m² proyectados junto a los principales arquitectos del país." />
 <meta property="og:url" content="https://www.tenreiro.com/" />
 <meta property="og:image" content="https://www.tenreiro.com/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -130,7 +130,7 @@ section{position:relative}
 .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
 
 .site-header{position:sticky;top:0;z-index:70;padding:16px 0;transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);backdrop-filter:blur(10px)}
-.site-header.is-scrolled{padding:9px 0;background:rgba(234,244,250,.9);box-shadow:0 6px 26px rgba(15,61,99,.08)}
+.site-header.is-scrolled{padding:9px 0;background:var(--bg);box-shadow:0 6px 26px rgba(15,61,99,.08)}
 .site-header .wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:transparent}
 .progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--navy-mid));transition:width .1s linear}
@@ -218,8 +218,8 @@ section{position:relative}
 .band h2{color:#fff;font-size:clamp(30px,3.2vw,44px);margin-top:16px}
 .band p{margin-top:20px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.78);font-weight:300;max-width:54ch}
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:52px}
-.architects{list-style:none;display:grid;gap:2px;padding:0;margin:20px 0 0}
-.architects li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15.5px;color:#fff;font-weight:300}
+.split .slot{max-width:420px;aspect-ratio:4/5;border-radius:var(--r-lg);box-shadow:0 24px 56px rgba(9,32,52,.35)}
+.split .slot img{object-position:50% 20%}
 
 .accordion{padding:44px 0 8px;display:grid;gap:12px}
 .acc{background:rgba(255,255,255,.78);border:1px solid rgba(15,61,99,.08);border-radius:var(--r-lg);padding:8px;box-shadow:var(--sh-card);transition:box-shadow .3s var(--ease)}
@@ -260,10 +260,6 @@ section{position:relative}
 .projects{padding:56px 0 70px;scroll-margin-top:110px}
 .section-head{display:flex;gap:26px;align-items:flex-end;flex-wrap:wrap}
 .section-head h2{font-size:clamp(30px,3.2vw,44px);margin-top:16px}
-.filters{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;background:rgba(255,255,255,.7);border:1px solid rgba(15,61,99,.08);padding:6px;border-radius:999px}
-.filters button{border:none;cursor:pointer;padding:11px 20px;border-radius:999px;font-size:13px;font-weight:500;background:transparent;color:#43607a;transition:all .25s var(--ease)}
-.filters button:hover{background:rgba(15,61,99,.07);color:var(--navy)}
-.filters button.is-active{background:var(--navy);color:#fff}
 
 .grid{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
 .card{background:#fff;border-radius:var(--r-lg);padding:12px;box-shadow:var(--sh-card);cursor:pointer;transition:transform .35s var(--ease),box-shadow .35s var(--ease);animation:card-in .45s var(--ease) both}
@@ -323,46 +319,14 @@ section{position:relative}
    ============================================================ */
 .norte{padding:0 0 66px}
 .norte__card{background:linear-gradient(115deg,var(--navy-deep) 0%,var(--navy) 70%,#175c99 100%);border-radius:var(--r-xl);padding:52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:44px;align-items:center;box-shadow:var(--sh-deep)}
+.norte__card + .norte__card{margin-top:28px}
 .norte__card h2{margin-top:16px;color:#fff;font-size:clamp(26px,3vw,38px);line-height:1.12;text-wrap:balance}
 .norte__card p{margin-top:18px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.78);font-weight:300;max-width:50ch}
 .norte__card .btn{margin-top:28px}
 .norte__card .slot{height:300px;border-radius:22px}
-
-/* ============================================================
-   11. ESTUDIANTES
-   ============================================================ */
-.students{padding:0 0 70px;scroll-margin-top:110px}
-.students__card{background:#fff;border-radius:var(--r-xl);padding:44px;box-shadow:var(--sh-soft)}
-.students__head{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:end}
-.students__head h2{margin-top:16px;font-size:clamp(27px,2.8vw,38px)}
-.students__head p{margin-top:14px;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300;max-width:48ch}
-.students__head .filters{margin-left:auto;background:transparent;border:none;padding:0;justify-content:flex-end}
-.students__head .filters button{border:1px solid var(--line)}
-
-.table{margin-top:28px}
-.table__head,.table__row{display:grid;grid-template-columns:minmax(220px,3fr) minmax(120px,1fr) 215px}
-.table__head{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);font-weight:500;border-bottom:1px solid var(--line);padding-bottom:14px}
-.table__head div:last-child{text-align:right}
-.table__row{align-items:center;padding:16px 0;border-bottom:1px solid rgba(15,61,99,.07);transition:background .25s var(--ease),padding-left .25s var(--ease);border-radius:10px}
-.table__row:hover{background:var(--sand-soft);padding-left:12px}
-.dl__title{font-size:15.5px;color:var(--navy);font-weight:500;line-height:1.45;padding-right:20px}
-.dl__meta{margin-top:5px;font-size:12.5px;color:var(--stone);font-weight:300}
-.dl__file{display:flex;align-items:center;gap:9px;padding-right:16px}
-.dl__tag{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:.08em;padding:4px 8px;border-radius:6px;background:var(--sand-soft);border:1px solid var(--sand);color:#4a4a44;flex-shrink:0}
-.dl__tag--zip{background:rgba(41,171,226,.12);border-color:rgba(41,171,226,.32);color:var(--navy-mid)}
-.dl__size{font-size:13px;color:var(--stone);font-weight:300;font-variant-numeric:tabular-nums}
-.dl__action{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
-.dl__view{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(15,61,99,.14);color:var(--navy);padding:10px 16px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.08em}
-.dl__view:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.table__group{margin:30px 0 6px;display:flex;align-items:center;gap:14px;font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--stone)}
-.table__group::after{content:"";flex:1;height:1px;background:var(--line)}
-.table__group:first-child{margin-top:16px}
-.dl__btn{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:1px solid rgba(15,61,99,.1);color:var(--navy);padding:10px 18px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.08em}
-.dl__btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.dl__btn span{transition:transform .25s var(--ease)}
-.table__row:hover .dl__btn span{transform:translateY(2px)}
-.table__empty{padding:28px 0;font-size:14.5px;color:var(--body);font-weight:300}
-.students__note{margin-top:20px;font-size:12.5px;color:var(--stone);font-weight:300}
+.norte__list{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px;max-width:50ch}
+.norte__list li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.78);font-weight:300}
+.norte__list li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 
 /* ============================================================
    12. CONTACTO
@@ -488,10 +452,6 @@ a.contact__value:hover{color:var(--accent)}
 .chip:hover{transform:translateY(-3px);background:#fff;border-color:var(--accent)}
 
 /* lista de arquitectos */
-.architects li{transition:padding-left .3s var(--ease),border-color .3s var(--ease),opacity .7s var(--ease) var(--d,0s),transform .7s var(--ease) var(--d,0s)}
-.architects li:hover{padding-left:12px;border-color:var(--accent)}
-.architects .dot{transition:box-shadow .3s var(--ease),transform .3s var(--ease)}
-.architects li:hover .dot{transform:scale(1.3);box-shadow:0 0 0 5px rgba(41,171,226,.22)}
 
 /* pasos del proceso */
 .step::after{transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
@@ -513,8 +473,6 @@ a.contact__value:hover::after{transform:scaleX(1)}
 .footer__links a:hover{transform:translateX(6px)}
 .footer__logo img{transition:transform .4s var(--ease)}
 .footer__logo:hover img{transform:scale(1.04)}
-.dl__btn,.dl__view{transition:all .25s var(--ease)}
-.dl__btn:hover,.dl__view:hover{transform:translateY(-2px)}
 
 /* WhatsApp: pulso */
 @keyframes wa-pulse{0%{box-shadow:0 10px 26px rgba(9,32,52,.28),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 10px 26px rgba(9,32,52,.28),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 10px 26px rgba(9,32,52,.28),0 0 0 0 rgba(37,211,102,0)}}
@@ -554,30 +512,19 @@ a.contact__value:hover::after{transform:scaleX(1)}
   .cota--c{right:6px;bottom:24px}
   .cota__line{width:20px}
 
-  .about__card,.norte__card,.students__card,.contact__info,.form{padding:32px}
+  .about__card,.norte__card,.contact__info,.form{padding:32px}
   .band{padding:60px 0 66px;margin-top:40px}
   .split{gap:34px}
   .acc__inner .slot{min-height:190px}
   .acc__text{padding:26px 24px}
 
   .section-head{align-items:flex-start;gap:16px}
-  .filters{margin-left:0;max-width:100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .filters::-webkit-scrollbar{display:none}
-  .filters button{flex:0 0 auto}
-  .students__head .filters{justify-content:flex-start;margin-left:0}
 
   .modal__card{grid-template-columns:1fr;min-height:0;max-height:90vh;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border-radius:24px}
   .modal__info{overflow:visible;padding:30px 26px 32px}
   .carousel{flex:none;aspect-ratio:4/3;min-height:240px}
   .modal h3{font-size:26px}
   .row{grid-template-columns:1fr;gap:4px}
-
-  .table__head{display:none}
-  .table__row{grid-template-columns:1fr;gap:6px;padding:18px 0}
-  .table__row:hover{padding-left:0}
-  .dl__title,.dl__file{padding-right:0}
-  .dl__action{justify-content:flex-start;margin-top:10px}
-  .table__group{margin-top:26px}
 }
 
 @media (max-width:640px){
@@ -593,7 +540,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   .stats{gap:22px}
   .stats__rule{display:none}
 
-  .about__card,.norte__card,.students__card,.contact__info,.form{padding:24px;border-radius:24px}
+  .about__card,.norte__card,.contact__info,.form{padding:24px;border-radius:24px}
   .about__portrait .slot{max-width:none}
   .about__badge{position:static;display:inline-block;margin-top:14px;box-shadow:none}
   .band{padding:52px 0 56px}
@@ -669,10 +616,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Cómo trabajamos</a>
         <a href="#proyectos">Proyectos</a>
-        <a href="#estudiantes">Estudiantes</a>
         <a href="#contacto">Contacto</a>
-        
-        <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte<span class="ext">↗</span></a>
+        <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte Obras Civiles<span class="ext">↗</span></a>
+        <a href="https://formacion.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte Formación<span class="ext">↗</span></a>
       </nav>
     </div>
     <div class="progress"><div class="progress__bar" id="progressBar"></div></div>
@@ -687,11 +633,11 @@ a.contact__value:hover::after{transform:scaleX(1)}
       <div class="hero__sub">Ingeniería estructural &amp; profesionales asociados</div>
       <p class="hero__lead">
         Un despacho dedicado por completo a las estructuras, con un profundo énfasis en su diseño
-        arquitectónico. Proyectamos, calculamos y supervisamos la obra junto al arquitecto autor,
+        arquitectónico. Proyectamos, diseñamos y supervisamos la obra junto al arquitecto autor,
         desde el anteproyecto hasta el último vaciado.
       </p>
       <div class="hero__actions">
-        <a href="#contacto" class="btn btn--primary">Solicitar un cálculo estructural</a>
+        <a href="#contacto" class="btn btn--primary">Solicitar un diseño estructural</a>
         <a href="#proyectos" class="btn btn--ghost">Ver proyectos</a>
       </div>
       <div class="stats">
@@ -701,8 +647,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
         </div>
         <div class="stats__rule"></div>
         <div>
-          <div class="stat__num">+<span data-count="2200000" data-from="1850000" data-suffix=" m²">2.200.000 m²</span></div>
-          <div class="stat__label">de edificaciones calculadas</div>
+          <div class="stat__num">+<span data-count="3800000" data-from="3450000" data-suffix=" m²">3.800.000 m²</span></div>
+          <div class="stat__label">de edificaciones diseñadas</div>
         </div>
       </div>
     </div>
@@ -712,7 +658,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
         <img src="img/hero.jpg" alt="Estructura de concreto armado proyectada por el despacho" data-optional />
       </figure>
       <div class="cota cota--a" data-parallax="14">
-        <span class="cota__label">Cálculo estructural</span>
+        <span class="cota__label">Diseño estructural</span>
         <span class="cota__line"></span><span class="cota__tick"></span>
       </div>
       <div class="cota cota--b" data-parallax="-10">
@@ -738,11 +684,11 @@ a.contact__value:hover::after{transform:scaleX(1)}
         </div>
         <div>
           <div class="eyebrow" data-ref="A—1">Quién es él</div>
-          <h2>Esteban Tenreiro, ingeniero estructural</h2>
+          <h2>Esteban Tenreiro<br />ingeniero estructural</h2>
           <p>
-            Al frente de la firma, dirige el proyecto, el cálculo y la supervisión de obra de cada trabajo,
+            Al frente de la firma, dirige el proyecto, el diseño y la supervisión de obra de cada trabajo,
             en colaboración directa con el arquitecto autor. Su criterio se apoya en
-            <span data-years>30</span> años de ejercicio y en programas de cálculo propios, alineados con la
+            <span data-years>30</span> años de ejercicio y en programas de diseño propios, alineados con la
             norma venezolana de construcciones sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019.
           </p>
           <div class="chips">
@@ -772,15 +718,14 @@ a.contact__value:hover::after{transform:scaleX(1)}
             acompañe la idea en vez de corregirla al final.
           </p>
           <p>
-            En <span data-years>30</span> años el equipo ha proyectado la estructura, realizado el cálculo y
-            supervisado la construcción de más de 2.000.000 m² de edificaciones, abarcando todas las
+            En <span data-years>30</span> años el equipo ha proyectado la estructura, realizado el diseño y
+            supervisado la construcción de más de 3.800.000 m² de edificaciones, abarcando todas las
             tipologías arquitectónicas y estructurales del país.
           </p>
         </div>
-        <div class="reveal reveal--left">
-          <div class="eyebrow eyebrow--light" data-ref="A—3">Arquitectos asociados</div>
-          <ul class="architects" id="architects"></ul>
-        </div>
+        <figure class="slot reveal reveal--img" data-label="Ing. Esteban Tenreiro Picón">
+          <img src="img/retrato-esteban-2.jpg" alt="Ing. Esteban Tenreiro Picón" data-optional />
+        </figure>
       </div>
     </div>
   </section>
@@ -793,7 +738,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   <section class="process" id="proceso">
     <div class="wrap">
       <div class="reveal">
-        <div class="eyebrow" data-ref="A—4">Cómo trabajamos</div>
+        <div class="eyebrow" data-ref="A—3">Cómo trabajamos</div>
         <h2 style="margin-top:16px;font-size:clamp(30px,3.2vw,44px)">Cuatro etapas, entregas claras en cada una</h2>
         <p style="margin-top:18px;max-width:56ch;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300">
           Nos incorporamos desde el anteproyecto. Cada etapa cierra con documentos que el arquitecto y el
@@ -809,10 +754,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow" data-ref="A—5">Obras</div>
+          <div class="eyebrow" data-ref="A—4">Obras</div>
           <h2>Proyectos</h2>
         </div>
-        <div class="filters" id="projectFilters" role="group" aria-label="Filtrar proyectos"></div>
       </div>
       <div class="grid" id="projectGrid"></div>
     </div>
@@ -823,7 +767,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="norte__card reveal">
         <div>
-          <div class="eyebrow eyebrow--light" data-ref="A—6">Norte Obras Civiles</div>
+          <div class="eyebrow eyebrow--light" data-ref="A—5">Norte Obras Civiles</div>
           <h2>Contratistas con historial verificado</h2>
           <p>
             Ponemos a disposición de nuestros clientes contratistas por especialidad con los que ya hemos
@@ -838,33 +782,33 @@ a.contact__value:hover::after{transform:scaleX(1)}
           <img src="img/norte-obra.jpeg" alt="Obra ejecutada por Norte Obras Civiles" data-optional />
         </figure>
       </div>
-    </div>
-  </section>
 
-  <!-- ===================== ESTUDIANTES ===================== -->
-  <section class="students" id="estudiantes">
-    <div class="wrap">
-      <div class="students__card reveal">
-        <div class="students__head">
-          <div>
-            <div class="eyebrow" data-ref="A—7">Material de estudio</div>
-            <h2>Estudiantes</h2>
-            <p>Apuntes y ejercicios de análisis estructural. Descarga libre, sin registro.</p>
-          </div>
-          <div class="filters" id="downloadFilters" role="group" aria-label="Filtrar descargas"></div>
+      <div class="norte__card reveal">
+        <div>
+          <div class="eyebrow eyebrow--light" data-ref="A—6">Formación Norte</div>
+          <h2>Formación técnica de posgrado en obras civiles</h2>
+          <p>
+            Formación Norte es el brazo educativo de Norte Obras Civiles: diplomados de posgrado para
+            profesionales y estudiantes próximos a graduarse de ingeniería, arquitectura y carreras afines,
+            que buscan profundizar en el diseño, la gestión y la construcción de obras civiles.
+          </p>
+          <ul class="norte__list">
+            <li>Diplomado Internacional Técnicas para el Desarrollo de Proyectos y Construcción. Integración Ingeniería y Arquitectura</li>
+            <li>Diplomado Estructuras de Acero</li>
+            <li>Diplomado Patología de Obras Civiles. Un enfoque práctico</li>
+            <li>Diplomado Diseño Internacional de Estructuras Sismorresistentes</li>
+          </ul>
+          <p>
+            Aspira a ser referencia de la formación técnica de posgrado en la industria de la construcción
+            venezolana.
+          </p>
+          <a href="https://formacion.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer" class="btn btn--accent">
+            Visitar Formación Norte<span style="font-size:12px">↗</span>
+          </a>
         </div>
-        <div class="table">
-          <div class="table__head">
-            <div>Documento</div>
-            <div>Archivo</div>
-            <div>Acciones</div>
-          </div>
-          <div id="downloadRows"></div>
-        </div>
-        <p class="students__note">
-          Material docente de uso libre para fines académicos. Si un enlace falla, escríbenos a
-          <a href="mailto:estebantenreiro@gmail.com">estebantenreiro@gmail.com</a>.
-        </p>
+        <figure class="slot reveal reveal--img" data-label="Diplomados de Formación Norte">
+          <img src="img/norte-formacion.jpg" alt="Diplomados de Formación Norte" data-optional />
+        </figure>
       </div>
     </div>
   </section>
@@ -874,7 +818,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="contact__grid">
         <div class="contact__info reveal">
-          <div class="eyebrow eyebrow--light" data-ref="A—8">Hablemos</div>
+          <div class="eyebrow eyebrow--light" data-ref="A—7">Hablemos</div>
           <h2>Contacto</h2>
           <div class="contact__list">
             <div>
@@ -914,7 +858,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
           <div class="field">
             <label for="tipo">Tipo de solicitud</label>
             <select id="tipo" name="tipo">
-              <option>Proyecto y cálculo estructural</option>
+              <option>Proyecto y diseño estructural</option>
               <option>Supervisión de obra</option>
               <option>Inspección</option>
               <option>Gerencia de obra</option>
@@ -963,8 +907,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
       <div>
         <div class="footer__title">Recursos</div>
         <div class="footer__links">
-          <a href="#estudiantes">Estudiantes</a>
-          <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte ↗</a>
+          <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte Obras Civiles ↗</a>
+          <a href="https://formacion.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer">Norte Formación ↗</a>
         </div>
       </div>
       <div>
@@ -1023,7 +967,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   "@context":"https://schema.org",
   "@type":"ProfessionalService",
   "name":"Esteban Tenreiro – Profesionales y Asociados",
-  "description":"Despacho de ingeniería estructural en Caracas: proyecto y cálculo, supervisión, inspección y gerencia de obras civiles.",
+  "description":"Despacho de ingeniería estructural en Caracas: proyecto y diseño, supervisión, inspección y gerencia de obras civiles.",
   "url":"https://www.tenreiro.com/",
   "email":"estebantenreiro@gmail.com",
   "telephone":"+582129930530",
@@ -1035,7 +979,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     "postalCode":"1061",
     "addressCountry":"VE"
   },
-  "knowsAbout":["Ingeniería estructural","Cálculo sismorresistente","COVENIN 1756","Supervisión de obra","Gerencia de proyectos"]
+  "knowsAbout":["Ingeniería estructural","Diseño sismorresistente","COVENIN 1756","Supervisión de obra","Gerencia de proyectos"]
 }
 </script>
 
@@ -1056,38 +1000,24 @@ a.contact__value:hover::after{transform:scaleX(1)}
      usuario con el mensaje ya redactado (funciona igual, sin servidor). */
   var WEB3FORMS_KEY = "";
 
-  /* Carpeta donde están los archivos de la sección Estudiantes */
-  var DL_FOLDER = "pdf/";
-
   /* ============================================================
      DATOS
      ============================================================ */
   var YEARS = 30;
 
-  var ARCHITECTS = [
-    "Oscar Tenreiro",
-    "Ricardo Veiga",
-    "Lesmes Castañeda",
-    "Ignacio Cardona & Oberdan de Lucía",
-    "Marisabel Espinosa",
-    "Víctor Sánchez & Beltrán Haddad",
-    "Asier Albuquerque",
-    "AGV Arquitectos"
-  ];
-
   var SERVICES = [
     {
-      num: "01", title: "Proyecto y cálculo", img: "img/servicio-proyecto-calculo.jpg",
+      num: "01", title: "Proyecto y diseño", img: "img/servicio-proyecto-calculo.jpg",
       paras: [
-        "Diseñamos y calculamos estructuras en concreto armado, acero y madera, para cualquier tipología: vivienda, oficina, comercio, industria, salud y educación.",
-        "El cálculo se apoya en programas de nuestra propiedad, verificados contra la norma venezolana de construcciones sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019. Entregamos memoria de cálculo, planos estructurales y despiece de acero."
+        "Diseñamos estructuras en concreto armado, acero y madera, para cualquier tipología: vivienda, oficina, comercio, industria, salud y educación.",
+        "El diseño se apoya en programas de nuestra propiedad, verificados contra la norma venezolana de construcciones sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019. Entregamos memoria de cálculo, planos estructurales y despiece de acero."
       ]
     },
     {
       num: "02", title: "Supervisión", img: "img/servicio-supervision.jpg",
       paras: [
         "Visitamos la obra con frecuencia pactada y dejamos informe escrito de cada visita: qué se revisó, qué se aprobó y qué debe corregirse antes de continuar.",
-        "Supervisamos tanto proyectos propios como estructuras calculadas por terceros."
+        "Supervisamos tanto proyectos propios como estructuras diseñadas por terceros."
       ]
     },
     {
@@ -1107,7 +1037,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     {
       num: "05", title: "Asesoría", img: "img/servicio-asesoria.jpg",
       paras: [
-        "Consultas puntuales sobre una estructura existente, revisión de un cálculo de terceros o acompañamiento en la coordinación de obra, sin necesidad de contratar el proyecto completo."
+        "Consultas puntuales sobre una estructura existente, revisión de un diseño de terceros o acompañamiento en la coordinación de obra, sin necesidad de contratar el proyecto completo."
       ]
     }
   ];
@@ -1119,7 +1049,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
       items: ["Esquema estructural", "Predimensionado", "Estimado de incidencia de acero y concreto"]
     },
     {
-      num: "02", title: "Cálculo",
+      num: "02", title: "Diseño",
       text: "Modelado y análisis sismorresistente de la edificación completa, con verificación de derivas y de los estados límites de la norma.",
       items: ["Memoria de cálculo", "Modelo de análisis", "Verificación normativa"]
     },
@@ -1142,104 +1072,107 @@ a.contact__value:hover::after{transform:scaleX(1)}
      tarjeta. Las que no existan se descartan solas, así que puedes dejar
      las seis y subir las fotos poco a poco.
      Carpeta sugerida: img/proyectos/<slug>/01.jpg … 06.jpg */
+  /* genera ["img/proyectos/<slug>/01.jpg", ...] hasta count */
+  function projectImages(slug, count) {
+    var list = [];
+    for (var i = 1; i <= count; i++) {
+      list.push("img/proyectos/" + slug + "/" + (i < 10 ? "0" + i : i) + ".jpg");
+    }
+    return list;
+  }
+
   var PROJECTS = [
     {
       name: "Acuarela 22", category: "Obra Privada", year: "2022",
       location: "", client: "", architect: "",
       role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      images: [
-        "img/hero.jpg","img/hero.jpg",
-        "img/acuarela-22/03.jpg","img/acuarela-22/04.jpg",
-        "img/acuarela-22/05.jpg","img/acuarela-22/06.jpg"
-      ]
+      images: projectImages("acuarela-22", 22)
+    },
+    {
+      name: "Ambulatorio Las Minas", category: "Obra Pública", year: "2007",
+      location: "Las Minas de Baruta, Caracas", client: "", architect: "Oscar Tenreiro",
+      role: "Supervisión estructural de la construcción del ambulatorio",
+      area: "", levels: "", system: "", material: "",
+      images: projectImages("ambulatorio-las-minas", 10)
     },
     {
       name: "Casa 30", category: "Obra Privada", year: "2023",
       location: "", client: "", architect: "",
       role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      images: [
-        "img/casa-30/01.jpg","img/casa-30/02.jpg",
-        "img/casa-30/03.jpg","img/casa-30/04.jpg",
-        "img/casa-30/05.jpg","img/casa-30/06.jpg"
-      ]
+      images: projectImages("casa-30", 35)
+    },
+    {
+      name: "Casa 312", category: "Casa", year: "2010",
+      location: "Oripoto, Caracas", client: "", architect: "Ernesto Velasco",
+      role: "Supervisión estructural de la obra",
+      area: "", levels: "", system: "", material: "",
+      images: projectImages("casa-312", 13)
+    },
+    {
+      name: "Colegio San Agustín del Paraíso", category: "Obra Privada", year: "2003",
+      location: "El Paraíso, Caracas", client: "Colegio San Agustín", architect: "Ignacio Cardona y Oberdan de Lucía",
+      role: "Administración delegada en asociación con el taller de arquitectura OGF",
+      area: "", levels: "", system: "", material: "",
+      images: projectImages("colegio-san-agustin-del-paraiso", 8)
+    },
+    {
+      name: "Gimnasio Cubierto San Carlos", category: "Gimnasio", year: "2003",
+      location: "San Carlos, Estado Cojedes", client: "", architect: "Oscar Tenreiro",
+      role: "Supervisión estructural",
+      area: "", levels: "", system: "", material: "",
+      images: projectImages("gimnasio-cubierto-san-carlos", 10)
     },
     {
       name: "Margarita Real 2", category: "Obra Privada", year: "2023",
       location: "", client: "", architect: "",
       role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      images: [
-        "img/margarita-real-2/01.jpg","img/margarita-real-2/02.jpg",
-        "img/margarita-real-2/03.jpg","img/margarita-real-2/04.jpg",
-        "img/margarita-real-2/05.jpg","img/margarita-real-2/06.jpg"
-      ]
+      images: projectImages("margarita-real-2", 14)
+    },
+    {
+      name: "Paseo Los Próceres", category: "Obra Pública", year: "2012",
+      location: "", client: "Sexto Cuerpo de Ingenieros", architect: "",
+      role: "Proyecto y Construcción",
+      area: "", levels: "", system: "", material: "",
+      images: projectImages("paseo-los-proceres", 10)
     },
     {
       name: "Quinta Los 3", category: "Obra Privada", year: "2024",
       location: "", client: "", architect: "",
       role: "Proyecto y asesoría estructural",
       area: "", levels: "", system: "", material: "",
-      images: [
-        "img/quinta-los-3/01.jpg","img/quinta-los-3/02.jpg",
-        "img/quinta-los-3/03.jpg","img/quinta-los-3/04.jpg",
-        "img/quinta-los-3/05.jpg","img/quinta-los-3/06.jpg"
-      ]
+      images: projectImages("quinta-los-3", 19)
     },
     {
       name: "Quinta Mariajota", category: "Obra Privada", year: "2025",
       location: "", client: "", architect: "",
       role: "Proyecto y construcción",
       area: "", levels: "", system: "", material: "",
-      images: [
-        "imgquinta-mariajota/01.jpg","img/quinta-mariajota/02.jpg",
-        "img/quinta-mariajota/03.jpg","img/quinta-mariajota/04.jpg",
-        "img/quinta-mariajota/05.jpg","img/quinta-mariajota/06.jpg"
-      ]
+      images: projectImages("quinta-mariajota", 19)
     },
     {
-      name: "Casa 205", category: "Obra Privada", year: "2026",
-      location: "", client: "", architect: "",
-      role: "Proyecto y gerencia",
+      name: "Seguros La Occidental", category: "Edificio, Obra Privada", year: "2008",
+      location: "La Urbina, Caracas", client: "Seguros la Occidental", architect: "Moisés Levy",
+      role: "Administración delegada en asociación con el Arquitecto Moisés Levy, para la remodelación del edificio en todas sus etapas",
       area: "", levels: "", system: "", material: "",
-      images: [
-        "img/casa-205/01.jpg","img/casa-205/02.jpg",
-        "img/casa-205/03.jpg","img/proyectos/casa-205/04.jpg",
-        "img/casa-205/05.jpg","img/casa-205/06.jpg"
-      ]
+      images: projectImages("seguros-la-occidental", 9)
+    },
+    {
+      name: "Verticem Space", category: "Edificio, Obra Privada", year: "2012",
+      location: "Urbanización Oripoto, Municipio el Hatillo, Caracas", client: "", architect: "Arq. Oscar R. Tenreiro Degwitz",
+      role: "",
+      area: "18 habitaciones (seis tipo suite de dos niveles, piso superior), restaurante, zonas sociales, terrazas para eventos",
+      levels: "", system: "", material: "",
+      promoter: "Norte Obras Civiles",
+      collaborator: "Arq. Augusto Terán Barreto",
+      structure: "Ing. Esteban Tenreiro Picón",
+      sanitary: "Ing. Luciano Carestia",
+      electrical: "Ing. Eduardo Bazzetto",
+      construction: "Norte Obras Civiles",
+      images: projectImages("verticem", 9)
     }
-  ];
-
-  /* group: encabezado bajo el que aparece · kb: peso real del archivo
-     note: aclaración corta bajo el título (opcional) */
-  var DOWNLOADS = [
-    { group: "Apuntes", title: "Tema 1 · Matriz de desplazamiento y deformación",
-      file: "tema1matrizdesplazamientodeformacion-.pdf", kb: 4992 },
-    { group: "Apuntes", title: "Tema 2 · Aplicaciones del principio de trabajo virtual",
-      file: "tema2aplicacionesdelppiodetrabajovirtual-.pdf", kb: 5461 },
-    { group: "Apuntes", title: "Tema 3 · Método de las fuerzas",
-      file: "Apuntes-Tema-3.-Metodo-de-las-fuerzas.zip", kb: 7326, note: "Carpeta comprimida" },
-    { group: "Apuntes", title: "Tema 4 · Método de Cross",
-      file: "tema4metododecross.pdf", kb: 4388 },
-
-    { group: "Ejercicios", title: "Trabajo virtual",
-      file: "TrabajoVirtual.pdf", kb: 172 },
-    { group: "Ejercicios", title: "Capítulo I",
-      file: "Capitulo_I_parcial_1.pdf", kb: 542, note: "Primer parcial" },
-    { group: "Ejercicios", title: "Capítulos II, III y IV",
-      file: "Capitulo_II_III_IV(parcial_2).pdf", kb: 281, note: "Segundo parcial" },
-    { group: "Ejercicios", title: "Capítulo V",
-      file: "Capitulo_V(parcial_3).pdf", kb: 235, note: "Tercer parcial" },
-    { group: "Ejercicios", title: "Capítulos VI y VII",
-      file: "Capitulo_VI_VII(parcial_4).pdf", kb: 380, note: "Cuarto parcial" },
-    { group: "Ejercicios", title: "Capítulo VIII",
-      file: "Capitulo_VIII(parcial_5).pdf", kb: 288, note: "Quinto parcial" },
-
-    { group: "Temario", title: "Temario",
-      file: "temario.pdf", kb: 18 },
-    { group: "Temario", title: "Temario 2012",
-      file: "temario2012.pdf", kb: 73 }
   ];
 
   /* ============================================================
@@ -1387,19 +1320,6 @@ a.contact__value:hover::after{transform:scaleX(1)}
   }
 
   /* ============================================================
-     ARQUITECTOS
-     ============================================================ */
-  var archList = $("#architects");
-  ARCHITECTS.forEach(function (name, i) {
-    var li = el("li", "reveal");
-    li.style.setProperty("--d", (i * 0.06) + "s");
-    li.appendChild(el("span", "dot"));
-    li.appendChild(el("span", null, name));
-    archList.appendChild(li);
-    watch(li);
-  });
-
-  /* ============================================================
      CÓMO TRABAJAMOS
      ============================================================ */
   var processGrid = $("#processGrid");
@@ -1491,29 +1411,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   /* ============================================================
      PROYECTOS
      ============================================================ */
-  /* los filtros salen de las categorías que realmente existen */
-  var PROJECT_FILTERS = ["Todos"].concat(
-    PROJECTS.map(function (p) { return p.category; })
-            .filter(function (c, i, a) { return c && a.indexOf(c) === i; })
-  );
-  var projectFilter = "Todos";
-  var filtersWrap = $("#projectFilters");
   var grid = $("#projectGrid");
-
-  PROJECT_FILTERS.forEach(function (label) {
-    var b = el("button", label === projectFilter ? "is-active" : null, label);
-    b.type = "button";
-    b.addEventListener("click", function () {
-      projectFilter = label;
-      $$("button", filtersWrap).forEach(function (x) { x.classList.remove("is-active"); });
-      b.classList.add("is-active");
-      renderProjects();
-    });
-    filtersWrap.appendChild(b);
-  });
-
-  /* con una sola categoría el filtro no aporta nada: se oculta */
-  if (PROJECT_FILTERS.length <= 2) filtersWrap.style.display = "none";
 
   function projectMeta(p) {
     return [p.location, p.year === "—" ? null : p.year].filter(Boolean).join(" · ");
@@ -1521,9 +1419,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
 
   function renderProjects() {
     grid.innerHTML = "";
-    PROJECTS.filter(function (p) {
-      return projectFilter === "Todos" || p.category === projectFilter;
-    }).forEach(function (p, i) {
+    PROJECTS.forEach(function (p, i) {
       var card = el("article", "card");
       card.tabIndex = 0;
       card.setAttribute("role", "button");
@@ -1662,8 +1558,14 @@ a.contact__value:hover::after{transform:scaleX(1)}
       ["Categoría", p.category],
       ["Año", p.year],
       ["Ubicación", p.location],
+      ["Promotor", p.promoter],
       ["Cliente", p.client],
       ["Arquitectos", p.architect],
+      ["Colaborador", p.collaborator],
+      ["Estructura", p.structure],
+      ["Instalaciones sanitarias", p.sanitary],
+      ["Instalaciones eléctricas", p.electrical],
+      ["Construcción", p.construction],
       ["Área construida", p.area],
       ["Niveles", p.levels],
       ["Sistema estructural", p.system],
@@ -1741,99 +1643,6 @@ a.contact__value:hover::after{transform:scaleX(1)}
     else if (navOpen) setNav(false);
   });
 
-  /* ============================================================
-     DESCARGAS
-     ============================================================ */
-  var DL_FILTERS = ["Todos", "Apuntes", "Ejercicios", "Temario"];
-  var dlFilter = "Todos";
-  var dlWrap = $("#downloadFilters");
-  var dlRows = $("#downloadRows");
-
-  DL_FILTERS.forEach(function (label) {
-    var b = el("button", label === dlFilter ? "is-active" : null, label);
-    b.type = "button";
-    b.addEventListener("click", function () {
-      dlFilter = label;
-      $$("button", dlWrap).forEach(function (x) { x.classList.remove("is-active"); });
-      b.classList.add("is-active");
-      renderDownloads();
-    });
-    dlWrap.appendChild(b);
-  });
-
-  function fileExt(name) {
-    var i = name.lastIndexOf(".");
-    return i < 0 ? "" : name.slice(i + 1).toUpperCase();
-  }
-
-  function fileSize(kb) {
-    if (!kb) return "";
-    if (kb < 1024) return kb + " KB";
-    return (kb / 1024).toFixed(1).replace(".", ",") + " MB";
-  }
-
-  function fileURL(d) { return DL_FOLDER + encodeURIComponent(d.file); }
-
-  function downloadRow(d) {
-    var ext = fileExt(d.file);
-    var row = el("div", "table__row");
-
-    var titleCell = el("div");
-    titleCell.appendChild(el("div", "dl__title", d.title));
-    if (d.note) titleCell.appendChild(el("div", "dl__meta", d.note));
-    row.appendChild(titleCell);
-
-    var fileCell = el("div", "dl__file");
-    fileCell.appendChild(el("span", "dl__tag" + (ext === "ZIP" ? " dl__tag--zip" : ""), ext));
-    fileCell.appendChild(el("span", "dl__size", fileSize(d.kb)));
-    row.appendChild(fileCell);
-
-    var action = el("div", "dl__action");
-
-    /* el ZIP no se puede previsualizar en el navegador */
-    if (ext === "PDF") {
-      var view = el("a", "dl__view");
-      view.href = fileURL(d);
-      view.target = "_blank";
-      view.rel = "noopener noreferrer";
-      view.setAttribute("aria-label", "Abrir " + d.title + " en una pestaña nueva");
-      view.appendChild(document.createTextNode("VER"));
-      action.appendChild(view);
-    }
-
-    var a = el("a", "dl__btn");
-    a.href = fileURL(d);
-    a.setAttribute("download", "");
-    a.setAttribute("aria-label", "Descargar " + d.title + " (" + ext + ", " + fileSize(d.kb) + ")");
-    a.appendChild(document.createTextNode("DESCARGAR"));
-    a.appendChild(el("span", null, "↓"));
-    action.appendChild(a);
-    row.appendChild(action);
-
-    return row;
-  }
-
-  function renderDownloads() {
-    dlRows.innerHTML = "";
-    var list = DOWNLOADS.filter(function (d) {
-      return dlFilter === "Todos" || d.group === dlFilter;
-    });
-
-    if (!list.length) {
-      dlRows.appendChild(el("div", "table__empty", "No hay material en esta categoría todavía."));
-      return;
-    }
-
-    var lastGroup = null;
-    list.forEach(function (d) {
-      if (d.group !== lastGroup) {
-        dlRows.appendChild(el("div", "table__group", d.group));
-        lastGroup = d.group;
-      }
-      dlRows.appendChild(downloadRow(d));
-    });
-  }
-  renderDownloads();
 
   /* ============================================================
      FORMULARIO
