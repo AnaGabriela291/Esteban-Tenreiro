@@ -68,6 +68,9 @@ body.is-locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
 a{color:var(--navy);text-decoration:none;transition:color .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
 img{max-width:100%;display:block}
 button,input,textarea{font-family:inherit}
+/* evita el zoom accidental por doble-tap al deslizar el carrusel o tocar
+   tarjetas y botones en móvil, sin desactivar el pellizco-zoom del usuario */
+a,button,.card,.carousel,.carousel__slide{touch-action:manipulation}
 ::selection{background:var(--accent);color:#fff}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 
@@ -507,6 +510,12 @@ a.contact__value:hover::after{transform:scaleX(1)}
   .nav.is-open{transform:none;visibility:visible}
   .nav__title{display:block}
   .nav a{padding:15px 18px;border-radius:15px;font-size:13px;justify-content:space-between}
+
+  /* los enlaces entran en cascada cuando se abre el panel, en vez de aparecer de golpe */
+  .nav a{opacity:0;transform:translateX(14px)}
+  .nav.is-open a{opacity:1;transform:none;transition:opacity .4s var(--ease),transform .4s var(--ease);transition-delay:calc(var(--i,0) * 45ms)}
+
+  .card:active,.btn:active,.nav a:active{transform:scale(.97)}
 }
 
 @media (max-width:900px){
@@ -1620,6 +1629,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
   var navToggle = $("#navToggle");
   var scrim = $("#navScrim");
 
+  /* orden para la cascada de entrada de los enlaces del panel móvil (--i en CSS) */
+  $$("a", nav).forEach(function (a, i) { a.style.setProperty("--i", i); });
+
   function setNav(open) {
     navOpen = open;
     nav.classList.toggle("is-open", open);
@@ -1705,7 +1717,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
       return;
     }
 
-    var cuerpo = "Nombre: " + nombre + "\nCorreo: " + correo + "\nSolicitud: " + tipo + "\n\n" + mensaje;
+    var cuerpo = "Este mensaje llegó desde la página web de Esteban Tenreiro.\n\n" +
+      "Nombre: " + nombre + "\nCorreo: " + correo + "\nSolicitud: " + tipo + "\n\n" + mensaje;
 
     function success() {
       setNote("Mensaje enviado. Te responderemos al correo indicado.", "ok");
