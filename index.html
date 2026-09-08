@@ -80,8 +80,7 @@ p{margin:0}
 .wrap{max-width:1240px;margin:0 auto;padding-left:28px;padding-right:28px}
 
 /* eyebrow con marca de plano: A—1, A—2… */
-.eyebrow{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.eyebrow::before{content:attr(data-ref);font-family:var(--display);font-size:11px;letter-spacing:.1em;color:var(--stone);border:1px solid var(--sand);border-radius:4px;padding:3px 7px;background:rgba(255,255,255,.6)}
+.eyebrow{display:flex;align-items:center;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 .eyebrow--light{color:var(--accent)}
 .eyebrow--light::before{color:rgba(255,255,255,.62);border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
 
@@ -170,9 +169,8 @@ section{position:relative}
    5. HERO
    ============================================================ */
 .hero{max-width:1240px;margin:0 auto;padding:52px 28px 46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:center;scroll-margin-top:110px}
-.hero h1{font-size:clamp(42px,5.4vw,74px);font-weight:700;letter-spacing:-.045em}
-.hero h1 em{font-style:normal;display:block;font-weight:500;color:var(--navy-mid)}
-.hero__sub{margin-top:16px;font-size:clamp(18px,1.9vw,23px);font-weight:300;color:var(--accent);letter-spacing:-.01em}
+.hero h1{font-size:clamp(36px,4.6vw,58px);font-weight:700;letter-spacing:-.035em}
+.hero__sub{margin-top:14px;font-size:clamp(15px,1.5vw,18px);font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
 .hero__lead{margin-top:26px;max-width:47ch;font-size:16px;line-height:1.8;color:var(--body);font-weight:300}
 .hero__actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
 
@@ -646,7 +644,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="inicio">
     <div class="seq">
-      <h1>Esteban<em>Tenreiro</em></h1>
+      <h1>Esteban Tenreiro</h1>
       <div class="hero__sub">Profesionales asociados</div>
       <p class="hero__lead">
         Un despacho dedicado por completo a las estructuras, con un profundo énfasis en su diseño
@@ -711,7 +709,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
           <div class="about__badge">Ing. Esteban Tenreiro Picón</div>
         </div>
         <div>
-          <div class="eyebrow" data-ref="A—1">Quién es él</div>
+          <div class="eyebrow">¿Quién es él?</div>
           <h2>Esteban Tenreiro</h2>
           <p>
             Al frente de la firma, dirige cada proyecto en colaboración directa con el arquitecto. Su
@@ -737,18 +735,18 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="split">
         <div class="reveal">
-          <div class="eyebrow eyebrow--light" data-ref="A—2">Servicios</div>
+          <div class="eyebrow eyebrow--light">Servicios</div>
           <h2>Estructura, de la primera idea al último vaciado</h2>
           <p>
-            Esteban Tenreiro &amp; Profesionales Asociados es un despacho dedicado por completo a las
-            estructuras, con un profundo énfasis en su diseño arquitectónico. Trabajamos junto a un amplio
-            colectivo de arquitectos, integrándonos al proyecto desde el anteproyecto para que la estructura
-            acompañe la idea en vez de corregirla al final.
+            Esteban Tenreiro &amp; Profesionales Asociados es un estudio consultor especializado en
+            ingeniería estructural con visión arquitectónica. Nos integramos a cada proyecto desde la etapa
+            conceptual para garantizar que la estructura responda de forma fluida a la arquitectura,
+            potenciando el diseño en lugar de condicionarlo.
           </p>
           <p>
-            En <span data-years>38</span> años el equipo ha proyectado la estructura, realizado el diseño y
-            supervisado la construcción de más de 3.800.000 m² de edificaciones, abarcando todas las
-            tipologías arquitectónicas y estructurales del país.
+            Con más de <span data-years>38</span> años de trayectoria, hemos proyectado, diseñado y
+            supervisado la construcción de más de 3,8 millones de metros cuadrados de edificación,
+            abarcando todas las escalas y tipologías estructurales del país.
           </p>
         </div>
         <figure class="slot reveal reveal--img" data-label="Ing. Esteban Tenreiro Picón">
@@ -766,11 +764,12 @@ a.contact__value:hover::after{transform:scaleX(1)}
   <section class="process" id="proceso">
     <div class="wrap">
       <div class="reveal">
-        <div class="eyebrow" data-ref="A—3">Cómo trabajamos</div>
+        <div class="eyebrow">Cómo trabajamos</div>
         <h2 style="margin-top:16px;font-size:clamp(30px,3.2vw,44px)">Cuatro etapas, entregas claras en cada una</h2>
         <p style="margin-top:18px;max-width:56ch;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300">
-          Nos incorporamos desde el anteproyecto. Cada etapa cierra con documentos que el arquitecto y el
-          promotor pueden revisar, aprobar y llevar a permisología.
+          Nos integramos desde las etapas iniciales del proyecto. Cada fase se formaliza con documentación
+          técnica clara y auditable, diseñada para facilitar la revisión, validación y tramitación por
+          parte de todas las partes involucradas.
         </p>
       </div>
       <div class="process__grid" id="processGrid"></div>
@@ -782,7 +781,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow" data-ref="A—4">Obras</div>
+          <div class="eyebrow">Obras</div>
           <h2>Proyectos</h2>
         </div>
       </div>
@@ -795,7 +794,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="norte__card reveal">
         <div>
-          <div class="eyebrow eyebrow--light" data-ref="A—5">Norte Obras Civiles</div>
+          <div class="eyebrow eyebrow--light">Norte Obras Civiles</div>
           <h2>Aliados de excelente reputación en cada especialidad</h2>
           <p>
             Trabajamos con aliados especialistas en cada área, filtrados y verificados junto a nosotros a
@@ -813,7 +812,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
 
       <div class="norte__card reveal">
         <div>
-          <div class="eyebrow eyebrow--light" data-ref="A—6">Formación Norte</div>
+          <div class="eyebrow eyebrow--light">Formación Norte</div>
           <h2>Formación técnica de posgrado en obras civiles</h2>
           <p>
             Formación Norte es el brazo educativo de Norte Obras Civiles: diplomados de posgrado para
@@ -846,7 +845,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="contact__grid">
         <div class="contact__info reveal">
-          <div class="eyebrow eyebrow--light" data-ref="A—7">Hablemos</div>
+          <div class="eyebrow eyebrow--light">Hablemos</div>
           <h2>Contacto</h2>
           <div class="contact__list">
             <div>
@@ -860,7 +859,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
             <div>
               <div class="contact__label">Oficina</div>
               <div class="contact__address">
-                Centro Integral Santa Rosa de Lima. Piso 1. Oficina 1004.<br />
+                Centro Integral Santa Rosa de Lima. Piso 1. Oficina 104.<br />
                 Caracas 1061 – Venezuela
               </div>
             </div>
@@ -917,7 +916,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
           <span class="brand__text">Esteban Tenreiro<span>Profesionales asociados</span></span>
         </div>
         <p>
-          Centro Integral Santa Rosa de Lima. Piso 1. Oficina 1004.<br />
+          Centro Integral Santa Rosa de Lima. Piso 1. Oficina 104.<br />
           Caracas 1061 – Venezuela
         </p>
       </div>
@@ -970,7 +969,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     </div>
 
     <div class="modal__info">
-      <div class="eyebrow" data-ref="F—01">Ficha técnica</div>
+      <div class="eyebrow">Ficha técnica</div>
       <h3 id="modalName">—</h3>
       <dl class="modal__rows" id="modalRows"></dl>
       <div class="modal__cta">
@@ -1001,7 +1000,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   "areaServed":"Venezuela",
   "address":{
     "@type":"PostalAddress",
-    "streetAddress":"Centro Integral Santa Rosa de Lima, Piso 1, Oficina 1004",
+    "streetAddress":"Centro Integral Santa Rosa de Lima, Piso 1, Oficina 104",
     "addressLocality":"Caracas",
     "postalCode":"1061",
     "addressCountry":"VE"
