@@ -138,10 +138,16 @@ section{position:relative}
 .progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--navy-mid));transition:width .1s linear}
 
 .brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
-.brand__name{display:block;font-size:17px;font-family:var(--display);font-weight:800;text-transform:uppercase;color:var(--navy);line-height:1.05;letter-spacing:-.01em;transition:font-size .3s var(--ease)}
+.brand img{height:44px;transition:height .3s var(--ease)}
+.site-header.is-scrolled .brand img{height:36px}
+.brand__name,.brand__mark,.brand__sub{display:none}
+[data-brand].is-textonly img{display:none}
+[data-brand].is-textonly .brand__name,[data-brand].is-textonly .brand__mark,[data-brand].is-textonly .brand__sub{display:block}
+[data-brand].is-textonly .brand__mark{display:flex}
+.brand__name{font-size:17px;font-family:var(--display);font-weight:800;text-transform:uppercase;color:var(--navy);line-height:1.05;letter-spacing:-.01em;transition:font-size .3s var(--ease)}
 .site-header.is-scrolled .brand__name{font-size:15px}
-.brand__mark{display:flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:5px;background:var(--navy);color:var(--accent);font-family:var(--display);font-size:13px;font-weight:700;flex-shrink:0}
-.brand__sub{display:block;font-family:var(--text);font-size:10.5px;font-weight:500;line-height:1.35;letter-spacing:.03em;text-transform:uppercase;color:var(--accent)}
+.brand__mark{align-items:center;justify-content:center;width:23px;height:23px;border-radius:5px;background:var(--navy);color:var(--accent);font-family:var(--display);font-size:13px;font-weight:700;flex-shrink:0}
+.brand__sub{font-family:var(--text);font-size:10.5px;font-weight:500;line-height:1.35;letter-spacing:.03em;text-transform:uppercase;color:var(--accent)}
 
 .nav{margin-left:auto;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.74);border:1px solid rgba(15,61,99,.08);padding:6px;border-radius:999px;box-shadow:0 6px 22px rgba(15,61,99,.06);flex-wrap:wrap;font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:500}
 .nav a{padding:12px 19px;border-radius:999px;color:#43607a;display:flex;align-items:center;gap:7px}
@@ -372,6 +378,7 @@ a.contact__value:hover{color:var(--accent)}
 .site-footer{background:var(--navy-deep);color:rgba(255,255,255,.62);border-radius:36px 36px 0 0}
 .site-footer .wrap{padding:60px 28px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:42px}
 .footer__logo{background:transparent;padding:0;display:inline-flex;align-items:center}
+.footer__logo img{height:48px}
 .footer__logo .brand__name{color:#fff}
 .footer__logo .brand__mark{background:var(--accent);color:var(--navy-deep)}
 .site-footer p{margin-top:22px;font-size:14px;line-height:1.8;font-weight:300;max-width:32ch}
@@ -548,6 +555,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
   .hero{padding:26px 18px 30px}
   .topbar .wrap{gap:14px;font-size:11.5px;padding-left:18px;padding-right:18px}
   .site-header{padding:12px 0}
+  .brand img{height:36px}
+  .site-header.is-scrolled .brand img{height:30px}
   .brand__name{font-size:14px}
   .site-header.is-scrolled .brand__name{font-size:13px}
   .brand__mark{width:19px;height:19px;font-size:11px}
@@ -623,6 +632,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
   <header class="site-header" id="siteHeader">
     <div class="wrap">
       <a href="#inicio" class="brand" data-brand>
+        <img src="img/logo.png" alt="Esteban Tenreiro – Profesionales y Asociados" data-optional />
         <span class="brand__name">Esteban<br />Tenreiro</span>
         <span class="brand__mark" aria-hidden="true">&amp;</span>
         <span class="brand__sub">Profesionales<br />asociados</span>
@@ -918,6 +928,7 @@ a.contact__value:hover::after{transform:scaleX(1)}
     <div class="wrap">
       <div>
         <div class="footer__logo" data-brand>
+          <img src="img/logo-footer.png" alt="Esteban Tenreiro – Profesionales y Asociados" data-optional />
           <span class="brand__name">Esteban<br />Tenreiro</span>
           <span class="brand__mark" aria-hidden="true">&amp;</span>
           <span class="brand__sub">Profesionales<br />asociados</span>
