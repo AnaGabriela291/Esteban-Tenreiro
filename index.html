@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Esteban Tenreiro – Ingeniería estructural en Caracas</title>
-<meta name="description" content="Despacho de ingeniería estructural en Caracas: proyecto y diseño, memoria de cálculo, planos y despiece, supervisión e inspección de obra y gerencia de proyectos. Norma COVENIN 1756." />
+<meta name="description" content="Despacho de ingeniería estructural en Caracas: proyecto y diseño, memoria de diseño, planos y despiece, supervisión e inspección de obra y gerencia de proyectos." />
 <meta name="theme-color" content="#0F3D63" />
 <link rel="canonical" href="https://www.tenreiro.com/" />
 
@@ -248,6 +248,8 @@ section{position:relative}
 .acc__inner .slot{height:auto;min-height:200px;align-self:stretch;border-radius:var(--r-md)}
 /* la imagen se sale del flujo: la altura de la fila la fija el texto */
 .acc__inner .slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+/* encuadre amplio: la foto se muestra casi completa en vez de recortada */
+.acc__inner .slot--wide{aspect-ratio:793/496;min-height:0}
 .acc__text{background:var(--navy);border-radius:var(--r-md);padding:30px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .acc__text p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.86);font-weight:300}
 .acc__text .btn{align-self:flex-start;margin-top:8px}
@@ -662,9 +664,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
       <h1>Esteban Tenreiro</h1>
       <div class="hero__sub">Profesionales asociados</div>
       <p class="hero__lead">
-        Un despacho dedicado por completo a las estructuras, con un profundo énfasis en su diseño
-        arquitectónico. Proyectamos, diseñamos y supervisamos la obra junto al arquitecto,
-        desde las ideas iniciales hasta la entrega final.
+        Somos un despacho especializado en ingeniería estructural con visión arquitectónica.
+        Proyectamos, diseñamos y supervisamos estructuras en colaboración con el arquitecto y los
+        responsables del proyecto, desde el anteproyecto hasta la entrega final.
       </p>
       <div class="hero__actions">
         <a href="#contacto" class="btn btn--primary">Solicitar un diseño estructural</a>
@@ -672,8 +674,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
       </div>
       <div class="stats">
         <div>
-          <div class="stat__num"><span id="yearsCount" data-count="38" data-suffix=" años">38 años</span></div>
-          <div class="stat__label">de ejercicio continuo</div>
+          <div class="stat__num">+<span id="yearsCount" data-count="38" data-suffix=" años">38 años</span></div>
+          <div class="stat__label">de ejercicio profesional</div>
         </div>
         <div class="stats__rule"></div>
         <div>
@@ -727,10 +729,10 @@ a.contact__value:hover::after{transform:scaleX(1)}
           <div class="eyebrow">¿Quién es él?</div>
           <h2>Esteban Tenreiro</h2>
           <p>
-            Al frente de la firma, dirige cada proyecto en colaboración directa con el arquitecto. Su
-            criterio se apoya en más de <span data-years>38</span> años de ejercicio profesional y en una
-            metodología de trabajo ágil y eficaz, alineada con la norma venezolana de construcciones
-            sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019.
+            Al frente de la firma, Esteban Tenreiro dirige el proyecto, el diseño y la supervisión de obra
+            en colaboración directa con el arquitecto y los responsables de cada proyecto. Su criterio se
+            apoya en más de <span data-years>38</span> años de ejercicio profesional y en una metodología
+            de trabajo ágil, actualizada y eficaz, que integra el diseño, la gestión y el seguimiento de obra.
           </p>
           <div class="chips">
             <span class="chip">Concreto armado</span>
@@ -751,17 +753,13 @@ a.contact__value:hover::after{transform:scaleX(1)}
       <div class="split">
         <div class="reveal">
           <div class="eyebrow eyebrow--light">Servicios</div>
-          <h2>Estructura, de la primera idea al último vaciado</h2>
+          <h2>Desde las ideas iniciales hasta la entrega final</h2>
           <p>
-            Esteban Tenreiro &amp; Profesionales Asociados es un estudio consultor especializado en
+            Esteban Tenreiro y profesionales asociados es un estudio consultor especializado en
             ingeniería estructural con visión arquitectónica. Nos integramos a cada proyecto desde la etapa
-            conceptual para garantizar que la estructura responda de forma fluida a la arquitectura,
-            potenciando el diseño en lugar de condicionarlo.
-          </p>
-          <p>
-            Con más de <span data-years>38</span> años de trayectoria, hemos proyectado, diseñado y
-            supervisado la construcción de más de 3,8 millones de metros cuadrados de edificación,
-            abarcando todas las escalas y tipologías estructurales del país.
+            conceptual para que la estructura responda a la arquitectura y contribuya a desarrollar su
+            diseño. Contamos con más de <span data-years>38</span> años de trayectoria y más de
+            3.800.000 m² de edificaciones diseñadas.
           </p>
         </div>
         <figure class="slot reveal reveal--img" data-label="Ing. Esteban Tenreiro Picón">
@@ -783,8 +781,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
         <h2 style="margin-top:16px;font-size:clamp(30px,3.2vw,44px)">Cuatro etapas, entregas claras en cada una</h2>
         <p style="margin-top:18px;max-width:56ch;font-size:15.5px;line-height:1.8;color:var(--body);font-weight:300">
           Nos integramos desde las etapas iniciales del proyecto. Cada fase se formaliza con documentación
-          técnica clara y auditable, diseñada para facilitar la revisión, validación y tramitación por
-          parte de todas las partes involucradas.
+          técnica clara y organizada para facilitar su revisión, validación y tramitación por las partes
+          involucradas.
         </p>
       </div>
       <div class="process__grid" id="processGrid"></div>
@@ -812,9 +810,10 @@ a.contact__value:hover::after{transform:scaleX(1)}
           <div class="eyebrow eyebrow--light">Norte Obras Civiles</div>
           <h2>Aliados de excelente reputación en cada especialidad</h2>
           <p>
-            Trabajamos con aliados especialistas en cada área, filtrados y verificados junto a nosotros a
-            lo largo de los años. Conocemos su rendimiento, sus acabados y su cumplimiento en obra, lo que
-            reduce el riesgo de la ejecución.
+            Ponemos a disposición de nuestros clientes una red de profesionales y empresas aliadas de
+            excelente reputación en cada especialidad. Conocemos su desempeño y valoramos la calidad de sus
+            trabajos, el cuidado de los acabados y el cumplimiento de los plazos. Esta experiencia de
+            colaboración nos permite coordinar equipos comprometidos con las necesidades de cada proyecto.
           </p>
           <a href="http://www.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer" class="btn btn--accent">
             Visitar Norte Obras Civiles<span style="font-size:12px">↗</span>
@@ -827,12 +826,12 @@ a.contact__value:hover::after{transform:scaleX(1)}
 
       <div class="norte__card reveal">
         <div>
-          <div class="eyebrow eyebrow--light">Formación Norte</div>
-          <h2>Formación técnica de posgrado en obras civiles</h2>
+          <div class="eyebrow eyebrow--light">Norte Formación</div>
+          <h2>Formación técnica en obras civiles</h2>
           <p>
-            Formación Norte es el brazo educativo de Norte Obras Civiles: diplomados de posgrado para
-            profesionales y estudiantes próximos a graduarse de ingeniería, arquitectura y carreras afines,
-            que buscan profundizar en el diseño, la gestión y la construcción de obras civiles.
+            Norte Formación es el brazo educativo de Norte Obra Civil. Ofrece diplomados y actividades de
+            formación técnica para estudiantes y profesionales, con contenidos orientados a ampliar sus
+            conocimientos y fortalecer su aplicación en la práctica.
           </p>
           <ul class="norte__list">
             <li>Diplomado Internacional Técnicas para el Desarrollo de Proyectos y Construcción. Integración Ingeniería y Arquitectura</li>
@@ -840,16 +839,12 @@ a.contact__value:hover::after{transform:scaleX(1)}
             <li>Diplomado Patología de Obras Civiles. Un enfoque práctico</li>
             <li>Diplomado Diseño Internacional de Estructuras Sismorresistentes</li>
           </ul>
-          <p>
-            Aspira a ser referencia de la formación técnica de posgrado en la industria de la construcción
-            venezolana.
-          </p>
           <a href="https://formacion.norteobrasciviles.com/" target="_blank" rel="noopener noreferrer" class="btn btn--accent">
-            Visitar Formación Norte<span style="font-size:12px">↗</span>
+            Visitar Norte Formación<span style="font-size:12px">↗</span>
           </a>
         </div>
-        <figure class="slot slot--lg reveal reveal--img" data-label="Diplomados de Formación Norte">
-          <img src="img/norte-formacion.jpg" alt="Diplomados de Formación Norte" data-optional />
+        <figure class="slot slot--lg reveal reveal--img" data-label="Diplomados de Norte Formación">
+          <img src="img/norte-formacion.jpg" alt="Diplomados de Norte Formación" data-optional />
         </figure>
       </div>
     </div>
@@ -1051,10 +1046,10 @@ a.contact__value:hover::after{transform:scaleX(1)}
 
   var SERVICES = [
     {
-      num: "01", title: "Proyecto y diseño", img: "img/servicio-proyecto-calculo.jpg",
+      num: "01", title: "Proyecto y diseño", img: "img/servicio-proyecto-calculo.jpg", wide: true,
       paras: [
-        "Diseñamos estructuras en concreto armado, acero y madera, para cualquier tipología: vivienda, oficina, comercio, industria, salud y educación.",
-        "El diseño se apoya en programas de nuestra propiedad, verificados contra la norma venezolana de construcciones sismorresistentes COVENIN 1756-1:2001 y su 2.ª revisión de 2019. Entregamos memoria de cálculo, planos estructurales y despiece de acero."
+        "Diseñamos estructuras en concreto armado, acero y madera para edificaciones residenciales, comerciales, industriales, de salud y educativas. Desarrollamos soluciones acordes con la arquitectura, el uso y las necesidades de cada proyecto.",
+        "Nuestro trabajo abarca el diseño estructural y su documentación técnica, con atención a los detalles y a la coordinación entre las especialidades involucradas."
       ]
     },
     {
@@ -1074,8 +1069,8 @@ a.contact__value:hover::after{transform:scaleX(1)}
     {
       num: "04", title: "Gerencia de obra", img: "img/servicio-gerencia-obra.jpg",
       paras: [
-        "Presupuesto inicial, cronograma, flujo de caja, procura de materiales, selección de contratistas, control de calidad y mediciones, hasta la entrega final.",
-        "Ponemos a disposición contratistas por especialidad con los que ya hemos construido antes, lo que permite anticipar rendimientos y sostener la calidad de los acabados."
+        "Presupuesto inicial, cronograma, flujo de caja, procura de materiales, selección de profesionales y empresas aliadas, control de calidad y mediciones, hasta la entrega final.",
+        "Coordinamos equipos de profesionales y empresas aliadas por especialidad, con quienes ya hemos trabajado y cuyo desempeño conocemos."
       ]
     },
     {
@@ -1089,22 +1084,22 @@ a.contact__value:hover::after{transform:scaleX(1)}
   var PROCESS = [
     {
       num: "01", title: "Anteproyecto",
-      text: "Trabajamos junto al arquitecto desde las primeras ideas, cuando el diseño todavía se puede ajustar. Definimos sistema estructural, luces y predimensionado.",
+      text: "Revisamos la propuesta arquitectónica y definimos los criterios iniciales de la estructura, en coordinación con los responsables del proyecto.",
       items: ["Esquema estructural", "Predimensionado", "Estimado de incidencia de acero y concreto"]
     },
     {
       num: "02", title: "Diseño",
-      text: "Modelado y análisis sismorresistente de la edificación completa, con verificación de derivas y de los estados límites de la norma.",
-      items: ["Memoria de cálculo", "Modelo de análisis", "Verificación normativa"]
+      text: "Desarrollamos la solución estructural y coordinamos su integración con la arquitectura y las demás especialidades.",
+      items: ["Memoria de diseño", "Modelo de análisis", "Coordinación con especialidades"]
     },
     {
       num: "03", title: "Planos",
-      text: "Documentación lista para permisología y para que el maestro de obra la lea sin interpretar.",
+      text: "Preparamos los planos y detalles estructurales que documentan la solución y orientan su ejecución.",
       items: ["Planos estructurales", "Despiece de acero", "Detalles constructivos"]
     },
     {
       num: "04", title: "Obra",
-      text: "Acompañamiento en sitio con la frecuencia que el proyecto requiera, desde el inicio hasta la entrega final.",
+      text: "Realizamos el seguimiento y la supervisión estructural, atendiendo las consultas y los ajustes que surjan durante la ejecución.",
       items: ["Visitas con informe escrito", "Revisión previa al vaciado", "Cierre y entrega"]
     }
   ];
@@ -1436,7 +1431,9 @@ a.contact__value:hover::after{transform:scaleX(1)}
 
     var body = el("div", "acc__body");
     var inner = el("div", "acc__inner");
-    inner.appendChild(slot("Imagen del servicio: " + s.title, s.img, "Servicio de " + s.title));
+    var sl = slot("Imagen del servicio: " + s.title, s.img, "Servicio de " + s.title);
+    if (s.wide) sl.classList.add("slot--wide");
+    inner.appendChild(sl);
 
     var text = el("div", "acc__text");
     s.paras.forEach(function (p) { text.appendChild(el("p", null, p)); });
